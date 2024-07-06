@@ -2,4 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/digital-numbers');
+@font-face {
+  font-family: "inter";
+  src: url("../public/fonts/inter/inter.ttf");
+}
+
+@font-face {
+  font-family: "digital-numbers";
+  src: url("../public/fonts/digital-numbers/digital-numbers.ttf");
+}
+
+* {
+  @apply font-inter;
+}
+
+nav li {
+  @apply font-semibold transition-item hover:text-primary cursor-pointer;
+}
+
+.active {
+  @apply text-primary;
+}
+
+.transition-item {
+  @apply transition duration-200 ease-in;
+}
+
+button {
+  @apply transition-item cursor-pointer;
+}
+
+.h-center {
+  @apply flex justify-center;
+}
+
+.v-center {
+  @apply flex items-center;
+}
+
+.hv-center {
+  @apply flex justify-center items-center;
+}
+
+.secondary-button {
+  @apply border-2 border-primary rounded-lg px-4 py-2 text-primary hover:bg-primary hover:text-white;
+}
+
+.btn {
+  @apply bg-primary rounded-lg text-white px-4 py-2 hover:bg-white hover:text-primary;
+}
+
+.btn-border {
+  @apply border-2 border-primary;
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px white;
+}
+
+.outline-text-black {
+  -webkit-text-stroke: 1px black;
+}
+
+section {
+  @apply mt-20;
+}
+
+#product-page li {
+  @apply px-4 py-2 rounded hover:bg-primary hover:text-white transition-item cursor-pointer font-semibold;
+}
+
+#product-page .active {
+  @apply bg-primary text-white;
+}
