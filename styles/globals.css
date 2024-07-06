@@ -81,5 +81,5 @@ section {
 }
 
 footer li {
-  @apply font-light cursor-pointer hover:text-blue-200
+  @apply font-light cursor-pointer hover:text-blue-200;
 }
