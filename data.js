@@ -208,3 +208,22 @@ export const dress = [
         img: "/img/dress/8.png",
     },
 ]
+
+export const checkout = [
+    {
+        name: "Barbie Set",
+        color: "Pink, Blue",
+        size: "M, L",
+        price: 15000,
+        qty: 2,
+        img: "/img/checkout/1.png",
+    },
+    {
+        name: "Joyce Set",
+        color: "White, Black",
+        size: "M, L",
+        price: 55000,
+        qty: 2,
+        img: "/img/checkout/1.png",
+    }
+]

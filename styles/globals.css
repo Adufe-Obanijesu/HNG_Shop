@@ -56,6 +56,10 @@ button {
   @apply border-2 border-primary;
 }
 
+.btn-white {
+  @apply bg-white text-primary hover:bg-blue-50;
+}
+
 .outline-text {
   -webkit-text-stroke: 1px white;
 }
@@ -74,4 +78,8 @@ section {
 
 #product-page .active {
   @apply bg-primary text-white;
+}
+
+footer li {
+  @apply font-light cursor-pointer hover:text-blue-200
 }
