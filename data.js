@@ -58,9 +58,15 @@ export const testimonies = [
     },
     {
         img: "2.png",
-        text: "I got my exact order and they were perfect fit",
+        text: "Easy to use app with great trends and personalized recommendations. Highly recommended",
         name: "Bimpe O.",
         career: "Student",
+    },
+    {
+        img: "1.png",
+        text: "Easy to use app with great trends and personalized recommendations. Highly recommended",
+        name: "John D.",
+        career: "Engineer",
     },
 ]
 

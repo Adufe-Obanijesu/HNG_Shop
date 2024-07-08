@@ -72,7 +72,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div id="mobile" className={`fixed top-0 px-4 right-0 w-1/2 h-screen bg-white flex lg:hidden flex-col justify-between py-8 border-l z-30 duration-300 ease-in transition-all ${showSidebar ? "openSidebar" : "closeSidebar"}`}>
+      <div id="mobile" className={`fixed top-0 px-4 right-0 w-1/2 h-full bg-white flex lg:hidden flex-col justify-between py-8 border-l z-30 duration-300 ease-in transition-all ${showSidebar ? "openSidebar" : "closeSidebar"}`}>
       
       <div className="hv-center gap-4">
         <span className="hidden">
