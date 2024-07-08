@@ -6,7 +6,7 @@ import { RxCaretDown } from "react-icons/rx";
 
 export default function Navbar() {
   return (
-    <nav>
+    <nav className="hidden md:block">
       <div className="flex justify-between items-center">
         <div className="w-[30%]">
           <Link href="/">

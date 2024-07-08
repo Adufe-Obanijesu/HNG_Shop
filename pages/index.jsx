@@ -8,14 +8,17 @@ import Countdown from "@/components/Countdown";
 export default function Home() {
   return (
     <main>
-      <section className="bg-ascent rounded-lg px-48 mt-8">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex">
+      <section className="bg-ascent rounded-lg xl:px-48 px-8 mt-8">
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="xl:flex">
             <div className="text-center py-8 text-white space-y-6">
               <div className="space-y-">
-                <h2 className="font-bold text-5xl">ULTIMATE</h2>
+                <h2 className="font-bold md:text-5xl text-3xl">ULTIMATE</h2>
 
-                <h1 className="outline-text text-ascent text-8xl">SALES</h1>
+
+                <object type="image/svg+xml" data="/svgs/SALES.svg" height="118" className="xl:w-[355px] xl:h-[118px] md:w-[250px] md:h-[90px] w-[175px] h-[90px] mx-auto xl:mx-0 -mt-6 md:mt-0">
+                  Your browser does not support SVG
+                </object>
               </div>
 
               <div className="h-center">
@@ -35,7 +38,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <div className="flex justify-end">
               <Image
                 src="/img/hero.png"
@@ -49,8 +52,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid grid-cols-3 gap-4">
-        <div className="bg-base-blue h-[500px]">
+      <section className="grid md:grid-cols-3 grid-cols-2 gap-4">
+        <div className="bg-base-blue md:h-[550px] h-[400px]">
           <Image
             src="/img/opening1.png"
             width={1000}
@@ -65,15 +68,17 @@ export default function Home() {
             src="/img/opening2.png"
             width={1000}
             height={1000}
-            className="w-full h-40 object-cover"
+            className="w-full md:h-40 h-28 object-cover"
             alt="arries"
           />
 
-          <div className="grow space-y-2">
-            <h1 className="outline-text-black text-white text-center text-4xl">
-              NEW
-            </h1>
-            <h1 className="font-semibold text-center text-4xl">ARRIVAL</h1>
+          <div className="grow space-y-3 hv-center flex-col">
+            <div className="h-center">
+              <object type="image/svg+xml" data="/svgs/NEW.svg" className="xl:w-[160px] xl:h-[47px] md:w-[110px] md:h-[35px] w-[70px] h-[25px]">
+                Your browser does not support SVG
+              </object>
+            </div>
+            <h1 className="font-semibold text-center xl:text-6xl md:text-4xl text-3xl">ARRIVAL</h1>
             <div className="h-center">
               <button className="btn btn-border mx-auto">Shop Now</button>
             </div>
@@ -83,12 +88,12 @@ export default function Home() {
             src="/img/opening3.png"
             width={1000}
             height={1000}
-            className="w-full h-40 object-cover"
+            className="w-full md:h-40 h-28 object-cover"
             alt="arries"
           />
         </div>
 
-        <div className="bg-base-blue h-[500px]">
+        <div className="bg-base-blue md:h-[550px] hidden md:block">
           <Image
             src="/img/opening4.png"
             width={1000}
@@ -99,7 +104,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid grid-cols-4 gap-8">
+      <section className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
         {products.map((product) => {
           const { name, desc, price, img } = product;
 

@@ -5,9 +5,9 @@ import { FaFacebook } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary p-24 -mx-16">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex">
+    <footer className="bg-primary xl:p-24 md:py-16 p-8 xl:-mx-16 md:-mx-8 -mx-4">
+      <div className="grid xl:grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="md:flex md:col-span-2 xl:col-span-1">
           <div className="flex flex-col items-center">
             <Image
               src="/logo-white.png"
@@ -17,18 +17,18 @@ export default function Footer() {
               className="h-24 w-auto"
             />
             <div>
-              <button className="btn btn-white">
+              <button className="btn btn-white md:text-sm xl:text-base">
                 Download App on IOS & Android
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 text-white">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-y-8  md:col-span-3 xl:col-span-1 gap-4 text-white mt-8 md:mt-0">
           <div>
-            <h4 className="font-semibold uppercase mb-6">Customer service</h4>
+            <h4 className="font-semibold uppercase mb-6 text-sm md:text-base">Customer service</h4>
 
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 mt-4">
               <li>Orders & Delivery</li>
 
               <li>Payment & Pricing</li>
@@ -41,8 +41,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-semibold uppercase mb-6">About</h4>
+          <div className="col-start-1 row-start-2 md:col-auto md:row-auto">
+            <h4 className="font-semibold text-sm md:text-base mb-6">About</h4>
 
             <ul className="flex flex-col gap-4">
               <li>About Us</li>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold uppercase mb-6">Help</h4>
+            <h4 className="font-semibold text-sm md:text-base mb-6">Help</h4>
 
             <ul className="flex flex-col gap-4">
               <li>Contact Us</li>

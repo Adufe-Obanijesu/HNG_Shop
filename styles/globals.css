@@ -69,7 +69,7 @@ button {
 }
 
 section {
-  @apply mt-20;
+  @apply lg:mt-20 mt-10;
 }
 
 #product-page li {

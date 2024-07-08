@@ -4,12 +4,12 @@ import { testimonies } from "@/data";
 
 export default function Testimonials() {
   return (
-    <section className="-mx-16 bg-base-blue p-16">
+    <section className="xl:-mx-16 md:-mx-8 -mx-4 bg-base-blue p-16">
       <h4 className="font-bold text-center text-3xl">
         Our Customer&apos;s Review
       </h4>
 
-      <div className="grid grid-cols-2 gap-8 mt-12">
+      <div className="grid xl:grid-cols-2 gap-8 mt-12">
         {testimonies.map((testimony) => {
           const { img, text, name, career } = testimony;
 

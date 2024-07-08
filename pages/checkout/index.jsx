@@ -11,21 +11,21 @@ export default function Checkout() {
   return (
     <main>
       <section className="border-b pb-8 mt-8">
-        <h3 className="font-bold text-3xl mb-8">Checkout</h3>
+        <h3 className="font-bold text-3xl mb-8 text-center">Checkout</h3>
 
         <div>
-          <div className="grid grid-cols-4">
-            <h4 className="border-b pb-3 text-gray-600 font-medium">Product</h4>
+          <div className="grid lg:grid-cols-4 md:grid-cols-12 grid-cols-2">
+            <h4 className="md:col-span-4 lg:col-span-1 border-b pb-3 text-gray-600 font-medium">Product</h4>
 
-            <h4 className="border-b pb-3 text-gray-600 font-medium text-center">
+            <h4 className="md:col-span-2 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
               Price
             </h4>
 
-            <h4 className="border-b pb-3 text-gray-600 font-medium text-center">
+            <h4 className="md:col-span-4 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
               Quantity
             </h4>
 
-            <h4 className="border-b pb-3 text-gray-600 font-medium text-end">
+            <h4 className="md:col-span-2 lg:col-span-1 border-b pb-3 text-gray-600 font-medium text-end">
               Total
             </h4>
           </div>
@@ -49,7 +49,7 @@ export default function Checkout() {
       </section>
 
       <section>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           <div className="space-y-8">
             <div className="v-center justify-between p-4 bg-blue-50 rounded-md">
               <div>
@@ -99,8 +99,8 @@ export default function Checkout() {
           </div>
 
           <div className="flex justify-end">
-            <div>
-              <div className="rounded-lg p-4 bg-blue-100 space-y-4">
+            <div className="w-full xl:w-2/3">
+              <div className="rounded-lg p-4 bg-blue-50 space-y-4">
                 <div className="flex justify-between">
                   <h4 className="text-lg font-bold">Payment Method</h4>
 
@@ -113,7 +113,7 @@ export default function Checkout() {
                   <div className="btn btn-white w-auto">Card</div>
                 </div>
 
-                <div className="flex gap-8">
+                <div className="flex md:gap-8 gap-3">
                   <Image
                     src="/img/card.png"
                     alt="card"
@@ -133,9 +133,9 @@ export default function Checkout() {
           </div>
         </div>
 
-        <hr className="mb-8 mt-12" />
+        <hr className="mb-8 mt-12 hidden md:block" />
 
-        <div className="flex justify-end">
+        <div className="hidden md:flex justify-end">
           <div className="v-center gap-8">
             <h4 className="font-semibold text-xl">Total:</h4>
 
@@ -147,7 +147,7 @@ export default function Checkout() {
         </div>
 
         <div className="h-center mt-8">
-          <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24">
+          <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto">
             Place Order
           </button>
         </div>

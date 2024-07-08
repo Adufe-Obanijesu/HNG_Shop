@@ -37,40 +37,40 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-6 mt-2">
       <div>
-        <span className="px-1 py-2 text-xl font-digital-numbers text-ascent bg-white rounded">
+        <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
           {timeLeft.days < 10 && "0"}
           {timeLeft.days}
         </span>
-        <br />
+        
         <h6 className="text-white mt-2 text-sm">Days</h6>
       </div>
 
       <div>
-        <span className="px-1 py-2 text-xl font-digital-numbers text-ascent bg-white rounded">
+        <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
           {timeLeft.hours < 10 && "0"}
           {timeLeft.hours}
         </span>
-        <br />
+        
         <h6 className="text-white mt-2 text-sm">Hr</h6>
       </div>
 
       <div>
-        <span className="px-1 py-2 text-xl font-digital-numbers text-ascent bg-white rounded">
+        <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
           {timeLeft.minutes < 10 && "0"}
           {timeLeft.minutes}
         </span>
-        <br />
+        
         <h6 className="text-white mt-2 text-sm">Mins</h6>
       </div>
 
       <div>
-        <span className="px-1 py-2 text-xl font-digital-numbers text-ascent bg-white rounded">
+        <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
           {timeLeft.seconds < 10 && "0"}
           {timeLeft.seconds}
         </span>
-        <br />
+        
         <h6 className="text-white mt-2 text-sm">Sec</h6>
       </div>
     </div>

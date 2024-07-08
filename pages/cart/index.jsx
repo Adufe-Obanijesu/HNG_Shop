@@ -1,7 +1,7 @@
 import CartItem from "@/components/CartItem";
 import Testimonials from "@/components/testimonials/Testimonials";
 
-import { TbBus } from "react-icons/tb";
+import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 import { PiPackage } from "react-icons/pi";
 
 import { checkout } from "@/data";
@@ -19,8 +19,8 @@ export default function Cart() {
       </div>
 
       <section className="mt-4">
-        <div className="grid grid-cols-4 gap-4 border-b pb-8">
-          <div className="col-span-3 border-t pt-2">
+        <div className="grid md:grid-cols-4 gap-4 border-b pb-8">
+          <div className="md:col-span-3 border-t pt-2">
             {checkout.map((item) => {
               const { name, color, size, price, qty, img } = item;
 
@@ -80,34 +80,42 @@ export default function Cart() {
         </div>
       </section>
 
-      <section>
-        <p className="text-gray-700 v-center gap-1">
-          <TbBus className="inline text-xl" />
-          <span className="font-bold">Estimated Delivery:</span>
-          <span className="font-medium">Jul 30 - Aug 03</span>
-        </p>
+      <section className="grid lg:grid-cols-2 gap-4 -mx-4 md:mx-0">
+        <div className="lg:col-start-2 lg:pl-10">
+          <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
+            <TbBus className="inline text-xl shrink-0" />
+            <span className="font-bold">Estimated Delivery:</span>
+            <span className="font-medium">Jul 30 - Aug 03</span>
+          </p>
 
-        <p className="mt-2 text-gray-700 v-center gap-1">
-          <PiPackage className="inline text-xl" />
-          <span className="font-bold">Free Shipping & Returns:</span>
-          <span className="font-medium">On all ordres over N50,000</span>
-        </p>
+          <p className="mt-2 text-gray-700 v-center gap-1 mx-4 md:mx-0">
+            <PiPackage className="inline text-xl shrink-0" />
+            <span className="font-bold">Free Shipping & Returns:</span>
+            <span className="font-medium">
+              On all orders over
+                <span className="shrink-0 whitespace-nowrap">
+                    <TbCurrencyNaira className="text-xl mb-[3px] inline" />
+                    <span className="">50,000</span>
+                </span>
+            </span>
+          </p>
 
-        <div className="mt-6 w-full py-8 rounded-md bg-blue-100 flex justify-center">
-          <div className="">
-            <div>
-              <Image
-                src="/img/trustbag.png"
-                width={1000}
-                height={1000}
-                alt="payment gateway"
-                className="w-full"
-              />
+          <div className="mt-6 w-full py-8 md:rounded-md bg-blue-100 flex justify-center">
+            <div className="">
+              <div>
+                <Image
+                  src="/img/trustbag.png"
+                  width={1000}
+                  height={1000}
+                  alt="payment gateway"
+                  className="w-full"
+                />
+              </div>
+
+              <p className="font-medium text-center mt-4">
+                Guarantee safe & secure checkout
+              </p>
             </div>
-
-            <p className="font-medium text-center mt-4">
-              Guarantee safe & secure checkout
-            </p>
           </div>
         </div>
       </section>

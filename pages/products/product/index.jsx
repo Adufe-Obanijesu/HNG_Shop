@@ -2,15 +2,33 @@ import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
-import { PiPackage } from "react-icons/pi";
+import { PiHeartBold, PiPackage } from "react-icons/pi";
+import { RiShareForward2Fill } from "react-icons/ri";
+import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 
 export default function Product() {
   return (
     <main>
-      <section>
+
+      <div className="flex md:justify-end items-center justify-between mt-4">
+        <div className="md:hidden">
+          <RxCaretLeft className="text-4xl" />
+        </div>
         <div className="flex gap-4">
-          <div className="flex flex-col justify-between shrink-0">
+          <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
+            <RiShareForward2Fill className="text-lg" />
+          </span>
+
+          <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
+            <PiHeartBold className="text-lg" />
+          </span>
+        </div>
+      </div>
+
+      <section className="-mx-4 md:mx-0 mt-4">
+        <div className="flex gap-4">
+          <div className="flex-col justify-between shrink-0 hidden lg:flex mx-4 md:mx-0">
             <Image
               src="/img/product/1.png"
               alt="dress"
@@ -69,9 +87,9 @@ export default function Product() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 grid-col-1 gap-8">
             <div>
-              <div className="h-full w-full relative">
+              <div className="md:h-full h-80 w-full relative">
                 <Image
                   src="/img/corporate_lady.png"
                   fill
@@ -81,36 +99,39 @@ export default function Product() {
               </div>
             </div>
 
-            <div className="py-8">
-              <div>
-                <h3 className="font-bold text-2xl">Blaze Dress</h3>
-                <div className="flex gap-1 items-center">
-                  <GoStarFill className="text-orange-400 text-lg" />
-                  <GoStarFill className="text-orange-400 text-lg" />
-                  <GoStarFill className="text-orange-400 text-lg" />
-                  <GoStarFill className="text-orange-400 text-lg" />
-                  <GoStarFill className="text-gray-300 text-lg" />
+            <div className="md:py-8 mx-4 md:mx-0">
 
-                  <p className="text-sm text-gray-500">4.8 (222)</p>
+              <div className="flex justify-between items-center md:block">
+                <div>
+                  <h3 className="font-bold text-2xl">Blaze Dress</h3>
+                  <div className="flex gap-1 items-center mt-2">
+                    <GoStarFill className="text-orange-400 md:text-lg text-sm" />
+                    <GoStarFill className="text-orange-400 md:text-lg text-sm" />
+                    <GoStarFill className="text-orange-400 md:text-lg text-sm" />
+                    <GoStarFill className="text-orange-400 md:text-lg text-sm" />
+                    <GoStarFill className="text-gray-300 md:text-lg text-sm" />
 
-                  <div className="w-[5px] h-[5px] rounded-full bg-gray-500"></div>
+                    <p className="text-sm text-gray-500">4.8 (222)</p>
 
-                  <p className="text-sm text-gray-500 underline">3 Reviews</p>
+                    <div className="w-[5px] h-[5px] rounded-full bg-gray-500"></div>
+
+                    <p className="text-sm text-gray-500 underline">3 Reviews</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="v-center mt-4">
-                <TbCurrencyNaira className="text-2xl text-primary" />
-                <h3 className="font-bold text-primary text-xl">143,000</h3>
+                <div className="v-center mt-4">
+                  <TbCurrencyNaira className="text-2xl text-primary" />
+                  <h3 className="font-bold text-primary md:text-xl text-lg">143,000</h3>
+                </div>
               </div>
 
               <div className="mt-4">
                 <ul className="w-full flex justify-between">
-                  <li className="font-bold text-xl">Descriptions</li>
-                  <li className="text-xl text-gray-500 font-medium">
+                  <li className="font-bold lg:text-xl text-base">Descriptions</li>
+                  <li className="lg:text-xl text-base text-gray-500 font-medium">
                     Specifications
                   </li>
-                  <li className="text-xl text-gray-500 font-medium">Details</li>
+                  <li className="lg:text-xl text-base text-gray-500 font-medium">Details</li>
                 </ul>
 
                 <p className="text-gray-600 mt-2">
@@ -124,11 +145,11 @@ export default function Product() {
                 <h5 className="font-semibold">Color</h5>
 
                 <div className="mt-2 flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-500"></div>
-                  <div className="w-8 h-8 rounded-full bg-black"></div>
-                  <div className="w-8 h-8 rounded-full bg-yellow-500"></div>
-                  <div className="w-8 h-8 rounded-full bg-red-500"></div>
-                  <div className="w-8 h-8 rounded-full bg-purple-500"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-gray-500"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-black"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-yellow-500"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-red-500"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-purple-500"></div>
                 </div>
               </div>
 
@@ -156,10 +177,10 @@ export default function Product() {
                 </div>
               </div>
 
-              <div>
-                <div className="h5 font-bold">Quantity</div>
+              <div className="mt-4 md:mt-0">
+                <h5 className="font-bold hidden md:block">Quantity</h5>
 
-                <div className="mt-4 flex gap-8">
+                <div className="mt-8 md:mt-4 flex flex-wrap justify-center md:justify-normal gap-8">
                   <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
                     <span className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full">
                       <FaMinus className="text-white text-sm" />
@@ -170,7 +191,7 @@ export default function Product() {
                     </span>
                   </div>
 
-                  <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24">
+                  <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto">
                     Add to Cart
                   </button>
                 </div>
@@ -180,21 +201,27 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-4">
-        <div className="col-start-2 pl-10">
-          <p className="text-gray-700 v-center gap-1">
-            <TbBus className="inline text-xl" />
+      <section className="grid lg:grid-cols-2 gap-4 -mx-4 md:mx-0">
+        <div className="lg:col-start-2 lg:pl-10">
+          <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
+            <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>
             <span className="font-medium">Jul 30 - Aug 03</span>
           </p>
 
-          <p className="mt-2 text-gray-700 v-center gap-1">
-            <PiPackage className="inline text-xl" />
+          <p className="mt-2 text-gray-700 v-center gap-1 mx-4 md:mx-0">
+            <PiPackage className="inline text-xl shrink-0" />
             <span className="font-bold">Free Shipping & Returns:</span>
-            <span className="font-medium">On all ordres over N50,000</span>
+            <span className="font-medium">
+              On all orders over
+                <span className="shrink-0 whitespace-nowrap">
+                    <TbCurrencyNaira className="text-xl mb-[3px] inline" />
+                    <span className="">50,000</span>
+                </span>
+            </span>
           </p>
 
-          <div className="mt-6 w-full py-8 rounded-md bg-blue-100 flex justify-center">
+          <div className="mt-6 w-full py-8 md:rounded-md bg-blue-100 flex justify-center">
             <div className="">
               <div>
                 <Image
