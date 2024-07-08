@@ -1,12 +1,21 @@
 import CheckoutItem from "@/components/CheckoutItem";
 import { checkout } from "@/data";
 import Image from "next/image";
-import { FaPlus } from "react-icons/fa";
+import { useState } from "react";
+import { FaCheck, FaPlus } from "react-icons/fa";
 
 import { HiPencil } from "react-icons/hi";
 import { TbCurrencyNaira } from "react-icons/tb";
 
 export default function Checkout() {
+
+  const [ pay, setPay ] = useState("pending");
+
+  const payment = () => {
+    setPay("inProgress");
+    setTimeout(() => setPay("successful"), 2000);
+  }
+
   return (
     <main>
       <section className="border-b pb-8 mt-8">
@@ -146,7 +155,7 @@ export default function Checkout() {
         </div>
 
         <div className="h-center mt-8">
-          <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto">
+          <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto" onClick={payment}>
             Checkout
           </button>
         </div>
@@ -155,26 +164,65 @@ export default function Checkout() {
       <br />
       <br />
 
-      <div>
-        <div className="bg-black bg-opacity-50 z-10 h-full w-full backdrop-blur-sm fixed top-0 left-0"></div>
-        <div className="fixed top-0 left-0 h-full w-full hv-center z-20">
-          <div className="bg-white px-10 py-8 lg:w-1/4 md:w-2/5 rounded-lg">
-            <div className="h-center">
-              <Image src="/img/loader.png" alt="loader" width={50} height={50} className="animate-spin" />
-            </div>
+      {
+        pay === "inProgress" && (
+          <div className="">
+            <div className="bg-black bg-opacity-50 z-10 h-full w-full backdrop-blur-sm fixed top-0 left-0"></div>
+            <div className="fixed top-0 left-0 h-full w-full hv-center z-20">
+              <div className="bg-white px-10 py-8 lg:w-1/4 md:w-2/5 rounded-2xl">
+                <div className="h-center">
+                  <Image src="/img/loader.png" alt="loader" width={50} height={50} className="animate-spin" />
+                </div>
 
-            <div className="mt-4">
-              <h4 className="text-center font-bold text-md">
-                Payment in progress
-              </h4>
+                <div className="mt-4">
+                  <h4 className="text-center font-bold text-md">
+                    Payment in progress
+                  </h4>
 
-              <p className="text-center font-medium text-sm">
-                Please, wait a few moments
-              </p>
+                  <p className="text-center font-medium text-sm">
+                    Please, wait a few moments
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )
+      }
+      
+      {
+        pay === "successful" && (
+          <div>
+            <div className="fixed top-0 left-0 h-full w-full hv-center z-10">
+
+            <div className="bg-black bg-opacity-50 h-full w-full backdrop-blur-sm fixed top-0 left-0 cursor-pointer" onClick={() => setPay("pending")}></div>
+
+              <div className="bg-white max-w-[90%] px-10 pb-8 lg:w-1/4 md:w-2/5 rounded-2xl z-20">
+                <div className="h-center">
+                  <div className="hv-center w-14 h-14 border-4 -mt-7 border-white shadow-lg rounded-full bg-primary">
+                    <FaCheck className="text-2xl text-white" />
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <h4 className="text-center font-bold text-md">
+                    Done!
+                  </h4>
+
+                  <p className="text-center font-medium text-sm mt-2">
+                    Your Card has been successfully charged.
+                  </p>
+
+                  <div className="h-center mt-4">
+                    <button className="bg-gray-200 px-4 py-2 rounded-2xl text-gray-600 hover:text-white hover:bg-primary">
+                      Track My Order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
 
     
 

@@ -113,7 +113,7 @@ export default function Navbar() {
         <button className="secondary-button w-full">Log out</button>
       </div>
 
-      <div className={`fixed lg:hidden ${!showSidebar && "hidden"} top-0 left-0 h-screen w-screen bg-blue-500/50 backdrop-blur-sm`} onClick={() => setShowSidebar(false)}></div>
+      <div className={`fixed z-20 lg:hidden ${!showSidebar && "hidden"} top-0 left-0 h-screen w-screen bg-blue-500/50 backdrop-blur-sm`} onClick={() => setShowSidebar(false)}></div>
 
     </nav>
   );

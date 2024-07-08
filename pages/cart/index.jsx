@@ -14,9 +14,11 @@ export default function Cart() {
       <h2 className="font-bold text-2xl text-center mt-8">Carts (2)</h2>
 
       <div className="md:flex justify-end mt-4 hidden">
-        <span className="underline text-primary cursor-pointer font-semibold">
-          Continue shopping
-        </span>
+        <Link href="/products">
+          <span className="underline text-primary cursor-pointer font-semibold">
+            Continue shopping
+          </span>
+        </Link>
       </div>
 
       <section className="mt-4">
@@ -72,9 +74,11 @@ export default function Cart() {
               </div>
 
               <div className="flex justify-center mt-4 md:hidden">
-                <span className="underline text-primary cursor-pointer font-semibold">
-                  Continue shopping
-                </span>
+                <Link href="/products">
+                  <span className="underline text-primary cursor-pointer font-semibold">
+                    Continue shopping
+                  </span>
+                </Link>
               </div>
             </div>
 
