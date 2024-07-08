@@ -12,7 +12,7 @@ export default function Cart() {
     <main>
       <h2 className="font-bold text-2xl text-center mt-8">Carts (2)</h2>
 
-      <div className="flex justify-end mt-4">
+      <div className="md:flex justify-end mt-4 hidden">
         <span className="underline text-primary cursor-pointer font-semibold">
           Continue shopping
         </span>
@@ -38,44 +38,61 @@ export default function Cart() {
             })}
           </div>
 
-          <div>
-            <h4 className="font-bold text-2xl mb-4">Summary</h4>
+          <div className="flex flex-col gap-8 mt-4">
+            <div className="order-2 md:order-1">
+              <h4 className="font-bold text-2xl mb-4">Summary</h4>
 
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <p className="text-gray-600">Subtotal</p>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <p className="text-gray-600">Subtotal</p>
 
-                <p className="text-gray-600">N30,000</p>
+                  <p className="text-gray-600">N30,000</p>
+                </div>
+
+                <div className="flex justify-between">
+                  <p className="text-gray-600">Subtotal</p>
+
+                  <p className="text-gray-600">N110,000</p>
+                </div>
+
+                <div className="flex justify-between">
+                  <h4 className="font-bold text-lg">Total</h4>
+
+                  <p className="font-bold text-lg">N143,000</p>
+                </div>
               </div>
 
-              <div className="flex justify-between">
-                <p className="text-gray-600">Subtotal</p>
-
-                <p className="text-gray-600">N110,000</p>
+              <div className="mt-8 md:hidden">
+                <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
+                  Checkout
+                </button>
               </div>
 
-              <div className="flex justify-between">
-                <h4 className="font-bold text-lg">Subtotal</h4>
-
-                <p className="font-bold text-lg">N143,000</p>
+              <div className="flex justify-center mt-4 md:hidden">
+                <span className="underline text-primary cursor-pointer font-semibold">
+                  Continue shopping
+                </span>
               </div>
             </div>
 
-            <h4 className="font-medium text-xl mt-8 mb-4">Promo & Discount</h4>
+            <div className="order-1 md:order-2">
+              <h4 className="font-medium text-xl mb-4">Promo & Discount</h4>
 
-            <div>
-              <input
-                type="text"
-                className="py-2 px-4 rounded-md bg-gray-100 w-full"
-                placeholder="Enter Promo Code"
-              />
+              <div>
+                <input
+                  type="text"
+                  className="py-2 px-4 rounded-md bg-gray-100 w-full"
+                  placeholder="Enter Promo Code"
+                />
+              </div>
+
+              <div className="mt-8 hidden md:block">
+                <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
+                  Checkout
+                </button>
+              </div>
             </div>
 
-            <div className="mt-8">
-              <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                Place Order
-              </button>
-            </div>
           </div>
         </div>
       </section>

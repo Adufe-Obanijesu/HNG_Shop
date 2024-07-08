@@ -5,7 +5,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 
 export default function CartItem({ name, color, size, img, qty, price }) {
   return (
-    <div className="grid grid-cols-3 mt-4">
+    <div className="grid grid-cols-3 md:mt-4 mt-6">
       <div className="grid col-span-2 md:col-span-1 grid-cols-2 gap-2">
         <div>
           <Image
@@ -28,7 +28,7 @@ export default function CartItem({ name, color, size, img, qty, price }) {
               Edit
             </button>
 
-            <button className="text-red-400 underline cursor-pointer hover:text-red-600">
+            <button className="text-red-500 underline cursor-pointer hover:text-red-600">
               Remove
             </button>
           </div>
@@ -36,10 +36,20 @@ export default function CartItem({ name, color, size, img, qty, price }) {
       </div>
 
       <div className="h-center">
-        <div>
+        <div className="flex md:block flex-col justify-between items-end">
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
             <h3 className="font-bold">{price}</h3>
+          </div>
+
+          <div className="px-4 py-2 rounded-lg border-2 border-primary v-center gap-3 md:hidden">
+            <span className="bg-gray-400 hv-center h-5 w-5 cursor-pointer rounded-full">
+              <FaMinus className="text-white text-[10px]" />
+            </span>
+            <span className="text-gray-400 font-medium text-sm">{qty}</span>
+            <span className="bg-primary hv-center h-5 w-5 cursor-pointer rounded-full">
+              <FaPlus className="text-white text-[10px]" />
+            </span>
           </div>
         </div>
       </div>
