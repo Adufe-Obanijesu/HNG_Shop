@@ -216,7 +216,7 @@ export default function Product() {
       </section>
 
       <section className="flex justify-end -mx-4 md:mx-0">
-        <div className="lg:col-start-2 lg:pl-10">
+        <div className="lg:col-start-2 lg:pl-10 xl:w-1/2">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>
@@ -235,7 +235,7 @@ export default function Product() {
             </span>
           </p>
 
-          <div className="mt-6 w-full py-8 md:rounded-md bg-blue-100 flex justify-center">
+          <div className="mt-6 w-full py-8 md:rounded-md bg-blue-100 px-4 flex justify-center">
             <div className="">
               <div>
                 <Image

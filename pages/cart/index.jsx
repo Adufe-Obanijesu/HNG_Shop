@@ -66,7 +66,7 @@ export default function Cart() {
               <div className="mt-8 md:hidden">
                 <Link href="/checkout">
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                    Checkout
+                    Place Order
                   </button>
                 </Link>
               </div>
@@ -92,7 +92,7 @@ export default function Cart() {
               <div className="mt-8 hidden md:block">
                 <Link href="/checkout">
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                    Checkout
+                    Place Order
                   </button>
                 </Link>
               </div>

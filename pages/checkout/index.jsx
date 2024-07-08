@@ -147,7 +147,7 @@ export default function Checkout() {
 
         <div className="h-center mt-8">
           <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto">
-            Place Order
+            Checkout
           </button>
         </div>
       </section>

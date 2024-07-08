@@ -6,7 +6,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 export default function CartItem({ name, color, size, img, qty, price }) {
   return (
     <div className="grid grid-cols-3 md:grid-cols-6 xl:grid-cols-3 md:mt-4 mt-6">
-      <div className="grid col-span-2 md:col-span-3 grid-cols-2 gap-2 md:gap-4">
+      <div className="grid col-span-2 md:col-span-3 xl:col-span-1 grid-cols-2 gap-2 md:gap-4">
         <div>
           <Image
             src={img}

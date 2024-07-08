@@ -83,3 +83,11 @@ section {
 footer li {
   @apply font-light cursor-pointer hover:text-blue-200;
 }
+
+.closeSidebar {
+  @apply translate-x-[120%];
+}
+
+.openSidebar {
+  @apply translate-x-0;
+}
