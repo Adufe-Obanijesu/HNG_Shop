@@ -7,13 +7,31 @@ import { FaCheck, FaPlus } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi";
 import { TbCurrencyNaira } from "react-icons/tb";
 
+import { Context } from "@/pages/_app";
+import { useContext } from "react";
+import { useRouter } from "next/router";
+
 export default function Checkout() {
+
+  const router = useRouter();
+
+  const { state, dispatch } = useContext(Context);
+
+  const subtotal = state.cart.reduce((total, item) => {
+    return total + (item.price * item.qty)
+  }, 0)
 
   const [ pay, setPay ] = useState("pending");
 
   const payment = () => {
     setPay("inProgress");
+    dispatch({ type: "CLEAR" });
     setTimeout(() => setPay("successful"), 2000);
+  }
+
+  const reset = () => {
+    setPay("pending");
+    router.push("/products");
   }
 
   return (
@@ -22,34 +40,47 @@ export default function Checkout() {
         <h3 className="font-bold text-3xl mb-8 text-center">Checkout</h3>
 
         <div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-12 grid-cols-2">
-            <h4 className="md:col-span-4 lg:col-span-1 border-b pb-3 text-gray-600 font-medium">Product</h4>
+          
+          {
+            state.cart.length !== 0 && 
+            (
+              <div className="grid lg:grid-cols-4 md:grid-cols-12 grid-cols-2">
+                <h4 className="md:col-span-4 lg:col-span-1 border-b pb-3 text-gray-600 font-medium">Product</h4>
 
-            <h4 className="md:col-span-2 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
-              Price
-            </h4>
+                <h4 className="md:col-span-2 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
+                  Price
+                </h4>
 
-            <h4 className="md:col-span-4 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
-              Quantity
-            </h4>
+                <h4 className="md:col-span-4 lg:col-span-1 hidden md:block border-b pb-3 text-gray-600 font-medium text-center">
+                  Quantity
+                </h4>
 
-            <h4 className="md:col-span-2 lg:col-span-1 border-b pb-3 text-gray-600 font-medium text-end">
-              Total
-            </h4>
-          </div>
+                <h4 className="md:col-span-2 lg:col-span-1 border-b pb-3 text-gray-600 font-medium text-end">
+                  Total
+                </h4>
+              </div>
+            )
+          }
 
-          {checkout.map((item) => {
-            const { name, color, size, price, qty, img } = item;
+          {
+            state.cart.length === 0 && <div className="lg:col-span-3 mt-4"><h4 className="font-bold text-2xl text-center">No item found. Go shop!!!</h4></div>
+          }
+
+          {state.cart && state.cart.map((item) => {
+              const { id, name, price, qty, img, desc, type } = item;
 
             return (
               <CheckoutItem
                 key={name + price}
+                id={id}
+                desc={desc}
                 name={name}
-                color={color}
-                size={size}
+                color="Pink, Blue"
+                size="M, L"
                 price={price}
                 qty={qty}
                 img={img}
+                type={type}
               />
             );
           })}
@@ -100,7 +131,7 @@ export default function Checkout() {
 
                 <div className="v-center ml-10">
                   <TbCurrencyNaira className="text-xl" />
-                  <h3 className="font-bold">3,000</h3>
+                  <h3 className={`font-bold ${state.cart.length === 0 && "line-through"}`}>10,000</h3>
                 </div>
               </div>
             </div>
@@ -149,7 +180,11 @@ export default function Checkout() {
 
             <div className="v-center ml-10">
               <TbCurrencyNaira className="text-xl text-primary" />
-              <h3 className="font-bold text-primary">143,000</h3>
+              <h3 className="font-bold text-primary">
+                {
+                  state.cart.length === 0 ? 0 : subtotal + 10000
+                }
+              </h3>
             </div>
           </div>
         </div>
@@ -194,7 +229,7 @@ export default function Checkout() {
           <div>
             <div className="fixed top-0 left-0 h-full w-full hv-center z-10">
 
-            <div className="bg-black bg-opacity-50 h-full w-full backdrop-blur-sm fixed top-0 left-0 cursor-pointer" onClick={() => setPay("pending")}></div>
+            <div className="bg-black bg-opacity-50 h-full w-full backdrop-blur-sm fixed top-0 left-0 cursor-pointer" onClick={reset}></div>
 
               <div className="bg-white max-w-[90%] px-10 pb-8 lg:w-1/4 md:w-2/5 rounded-2xl z-20">
                 <div className="h-center">

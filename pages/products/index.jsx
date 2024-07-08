@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi";
 import { RiShareForwardBoxLine } from "react-icons/ri";
 import { PiHeartBold } from "react-icons/pi";
-import { categories, corporate, dress } from "@/data";
+import { shop, categories } from "@/data";
 import Image from "next/image";
 import Product from "@/components/Product";
 import Testimonials from "@/components/testimonials/Testimonials";
@@ -62,12 +62,14 @@ export default function Products() {
       <section>
         <h3 className="font-bold text-2xl mb-6">Corporate</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {corporate.map((product) => {
-            const { name, desc, price, img } = product;
+          {shop.filter(product => product.type === "corporate").map((product) => {
+            const { name, desc, price, img, id, type } = product;
 
             return (
               <Product
                 key={name + img + price}
+                id={id}
+                type={type}
                 name={name}
                 desc={desc}
                 price={price}
@@ -81,12 +83,14 @@ export default function Products() {
       <section>
         <h3 className="font-bold text-2xl mb-6">Dress</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {dress.map((product) => {
-            const { name, desc, price, img } = product;
+          {shop.filter(product => product.type === "dress").map((product) => {
+            const { name, desc, price, img, id, type } = product;
 
             return (
               <Product
                 key={name + img + price}
+                id={id}
+                type={type}
                 name={name}
                 desc={desc}
                 price={price}

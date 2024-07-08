@@ -7,32 +7,48 @@ import { PiHeartBold, PiPackage } from "react-icons/pi";
 import { RiShareForward2Fill } from "react-icons/ri";
 import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
-
-import { productDetails } from "@/data";
+import { shop } from "@/data";
 import { useRouter } from "next/router";
 
-export default function Product() {
+import { useContext } from "react";
+import { Context } from "@/pages/_app";
+
+export default function Product({productId}) {
 
   const router = useRouter();
 
+  const { state, dispatch } = useContext(Context);
+
+  const product = shop[Number(productId) - 1];
+
   const [ activeColor, setActiveColor ] = useState(0);
-  const [ current, setCurrent ] = useState(0)
-  const [ selectedImage, setSelectedImage ] = useState(current);
   const [ tab, setTab ] = useState("descriptions");
 
-  useEffect(() => {
-    setSelectedImage(productDetails[current]);
-    const productImage = setInterval(() => {
-      if (current > 6) {
-        setCurrent(0);
-        setSelectedImage(productDetails[0]);
-      } else {
-        setSelectedImage(productDetails[current + 1]);
-        setCurrent(current + 1);
-      }
-    }, 2000);
-    return () => clearInterval(productImage);
-  }, [current]);
+  const productDetails = shop.filter(item => item.type === product.type);
+
+  const { id, name, desc, price, img, type } = product;
+  
+  const handleAddToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: {
+      id,
+      name,
+      desc,
+      price,
+      img,
+      type,
+    } });
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: {
+      id,
+      name,
+      desc,
+      price,
+      img,
+      type,
+    } });
+  };
 
   return (
     <main>
@@ -60,14 +76,14 @@ export default function Product() {
             {
               productDetails.map(product => {
                 return (
-                  <div className={`${selectedImage.img === product.img && "border-2 border-primary"} p-1 cursor-pointer`} key={product.img}>
+                  <div className="p-1 cursor-pointer hover:border-2 border-primary" key={product.img}>
                     <Image
                       src={product.img}
                       alt="dress"
                       width={1000}
                       height={1000}
                       className="w-16 h-14 object-cover"
-                      onClick={() => setSelectedImage(product)}
+                      onClick={() => {router.push(`/products/${product.id}`)}}
                     />
                   </div>
                 )
@@ -76,34 +92,24 @@ export default function Product() {
 
           </div>
 
-          <div className="grid md:grid-cols-2 grid-col-1 gap-8">
+          <div className="grid md:grid-cols-2 grid-col-1 gap-8 grow">
             <div>
               <div className="md:h-full h-80 w-full relative">
                 <Image
-                  src={selectedImage.img}
+                  src={product.img}
                   fill
                   alt="corporate dress"
                   className="h-full w-full object-cover object-top"
                 />
               </div>
 
-              <div className="h-center gap-2 mt-4 lg:hidden">
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 0 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(0)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 1 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(1)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 2 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(2)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 3 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(3)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 4 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(4)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 5 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(5)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 6 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(6)}></span>
-                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 7 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(7)}></span>
-              </div>
             </div>
 
             <div className="md:py-8 mx-4 md:mx-0">
 
               <div className="flex justify-between items-center md:block">
                 <div>
-                  <h3 className="font-bold text-2xl">Blaze Dress</h3>
+                  <h3 className="font-bold text-2xl">{product.name}</h3>
                   <div className="flex gap-1 items-center mt-2">
                     <GoStarFill className="text-orange-400 md:text-lg text-sm" />
                     <GoStarFill className="text-orange-400 md:text-lg text-sm" />
@@ -121,26 +127,24 @@ export default function Product() {
 
                 <div className="v-center mt-4">
                   <TbCurrencyNaira className="text-2xl text-primary" />
-                  <h3 className="font-bold text-primary md:text-xl text-lg">143,000</h3>
+                  <h3 className="font-bold text-primary md:text-xl text-lg">{product.price}</h3>
                 </div>
               </div>
 
               <div className="mt-4">
                 <ul className="w-full flex justify-between">
-                  <li className={`${tab === "descriptions" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("descriptions")}>Descriptions</li>
-                  <li className={`${tab === "specifications" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("specifications")}>
+                  <li className={`${tab === "descriptions" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("descriptions")}>Descriptions</li>
+                  <li className={`${tab === "specifications" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("specifications")}>
                     Specifications
                   </li>
-                  <li className={`${tab === "details" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("details")}>Details</li>
+                  <li className={`${tab === "details" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("details")}>Details</li>
                 </ul>
 
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2 w-full">
                   {
                     tab === "descriptions" && (
                       <span>
-                        Classic women&apos;s tailored suit from Arries place. Single
-                        breasted design, notch lapel, two button closure, tailored fit
-                        for a flattering silhouette.
+                        {product.name} - {product.desc}
                       </span>
                     )
                   }
@@ -148,7 +152,7 @@ export default function Product() {
 {
                     tab === "specifications" && (
                       <span>
-                        Specifications Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt voluptatibus debitis. Optio, tenetur quos! Numquam ex facere quisquam quasi!
+                        Specifications Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       </span>
                     )
                   }
@@ -156,7 +160,7 @@ export default function Product() {
 {
                     tab === "details" && (
                       <span>
-                        Details Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt voluptatibus debitis. Optio, tenetur quos! Numquam ex facere quisquam quasi!
+                        Details Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       </span>
                     )
                   }
@@ -214,11 +218,11 @@ export default function Product() {
 
                 <div className="mt-8 md:mt-4 flex flex-wrap justify-center md:justify-normal gap-8">
                   <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
-                    <span className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full">
+                    <span className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full" onClick={handleRemoveFromCart}>
                       <FaMinus className="text-white text-sm" />
                     </span>
-                    <span className="text-gray-400 font-medium text-sm">2</span>
-                    <span className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full">
+                    <span className="text-gray-400 font-medium text-sm">{state.cart.find(item => item.id === product.id)?.qty || 0}</span>
+                    <span className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full" onClick={handleAddToCart}>
                       <FaPlus className="text-white text-sm" />
                     </span>
                   </div>
@@ -276,4 +280,14 @@ export default function Product() {
       <Testimonials />
     </main>
   );
+}
+
+export async function getServerSideProps(ctx) {
+
+  const { product: productId } = ctx.query;
+  return {
+    props: {
+      productId,
+    }
+  }
 }

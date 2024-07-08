@@ -8,10 +8,20 @@ import { checkout } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Context } from "@/pages/_app";
+import { useContext } from "react";
+
 export default function Cart() {
+
+  const { state } = useContext(Context);
+
+  const subtotal = state.cart.reduce((total, item) => {
+    return total + (item.price * item.qty)
+  }, 0)
+
   return (
     <main>
-      <h2 className="font-bold text-2xl text-center mt-8">Carts (2)</h2>
+      <h2 className="font-bold text-2xl text-center mt-8">Carts ({state.cart.length || 0})</h2>
 
       <div className="md:flex justify-end mt-4 hidden">
         <Link href="/products">
@@ -22,20 +32,30 @@ export default function Cart() {
       </div>
 
       <section className="mt-4">
+
+
         <div className="grid lg:grid-cols-4 gap-4 border-b pb-8">
           <div className="lg:col-span-3 border-t pt-2">
-            {checkout.map((item) => {
-              const { name, color, size, price, qty, img } = item;
+            
+            {
+              state.cart.length === 0 && <div className="lg:col-span-3 mt-2"><h4 className="font-bold text-xl">No item found. Go shop!!!</h4></div>
+            }
+
+            {state.cart && state.cart.map((item) => {
+              const { id, name, price, qty, img, desc, type } = item;
 
               return (
                 <CartItem
                   key={name + price}
+                  id={id}
+                  desc={desc}
                   name={name}
-                  color={color}
-                  size={size}
+                  color="Pink, Blue"
+                  size="M, L"
                   price={price}
                   qty={qty}
                   img={img}
+                  type={type}
                 />
               );
             })}
@@ -49,19 +69,28 @@ export default function Cart() {
                 <div className="flex justify-between">
                   <p className="text-gray-600">Subtotal</p>
 
-                  <p className="text-gray-600">N30,000</p>
+                  <div className="v-center">
+                    <TbCurrencyNaira className="text-lg text-gray-600" />
+                    <h3 className="text-gray-600">{subtotal}</h3>
+                  </div>
                 </div>
 
                 <div className="flex justify-between">
-                  <p className="text-gray-600">Subtotal</p>
+                  <p className="text-gray-600">Shipping</p>
 
-                  <p className="text-gray-600">N110,000</p>
+                  <div className="v-center">
+                    <TbCurrencyNaira className="text-lg text-gray-600" />
+                    <h3 className="text-gray-600">10000</h3>
+                  </div>
                 </div>
 
                 <div className="flex justify-between">
                   <h4 className="font-bold text-lg">Total</h4>
 
-                  <p className="font-bold text-lg">N143,000</p>
+                  <div className="v-center">
+                    <TbCurrencyNaira className="text-lg" />
+                    <h3 className="font-bold">{subtotal + 10000}</h3>
+                  </div>
                 </div>
               </div>
 

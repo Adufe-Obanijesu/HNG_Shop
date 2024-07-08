@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { Context } from "@/pages/_app";
 
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { RxCaretDown, RxHamburgerMenu } from "react-icons/rx";
 
 export default function Navbar() {
+
+  const { state } = useContext(Context);
 
   const router = useRouter();
   const path = router.pathname;
@@ -28,6 +32,19 @@ export default function Navbar() {
           </Link>
         </div>
 
+        <div className="md:hidden">
+          <Link href="/cart" className="relative">
+            <span className="hv-center border rounded-full h-8 w-8">
+              <MdOutlineShoppingCart />
+            </span>
+              <span className="w-5 h-5 bg-primary text-white rounded-full text-sm -top-1 -right-2 absolute hv-center">
+                {
+                  state.cart.length || 0
+                }
+              </span>
+          </Link>
+        </div>
+
         <ul className="lg:flex hidden gap-8 items-center">
           <Link href="/">
             <li className={`${path.includes("cart") || path.includes("checkout") || path.includes("product") ? "" : "active"}`}>Home</li>
@@ -42,10 +59,15 @@ export default function Navbar() {
             <li>Contact Us</li>
           </Link>
           <li>
-            <Link href="/cart">
+            <Link href="/cart" className="relative">
               <span className="hv-center border rounded-full h-8 w-8">
                 <MdOutlineShoppingCart />
               </span>
+                <span className="w-5 h-5 bg-primary text-white rounded-full text-sm -top-1 -right-2 absolute hv-center">
+                  {
+                    state.cart.length || 0
+                  }
+                </span>
             </Link>
           </li>
         </ul>
@@ -101,11 +123,16 @@ export default function Navbar() {
           <Link onClick={() => setShowSidebar(false)} href="#">
             <li>Contact Us</li>
           </Link>
-          <li>
-            <Link onClick={() => setShowSidebar(false)} href="/cart">
+          <li className="">
+            <Link href="/cart" className="relative" onClick={() => setShowSidebar(false)}>
               <span className="hv-center border rounded-full h-8 w-8">
                 <MdOutlineShoppingCart />
               </span>
+                <span className="w-5 h-5 bg-primary text-white rounded-full text-sm -top-1 -right-2 absolute hv-center">
+                  {
+                    state.cart.length || 0
+                  }
+                </span>
             </Link>
           </li>
         </ul>

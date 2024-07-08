@@ -1,12 +1,21 @@
 import Product from "@/components/Product";
 import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
+import { useContext } from "react";
 
-import { products } from "@/data";
+import { Context } from "@/pages/_app";
+
+import { shop } from "@/data";
 import Countdown from "@/components/Countdown";
 import Link from "next/link";
 
 export default function Home() {
+
+  const corporate = shop.filter(product => product.type === "corporate").slice(0,4);
+  const dress = shop.filter(product => product.type === "corporate").slice(0,4);
+
+  const { state } = useContext(Context);
+
   return (
     <main>
       <section className="bg-ascent rounded-lg xl:px-48 px-8 mt-8">
@@ -111,12 +120,30 @@ export default function Home() {
 
         <h3 className="font-bold md:text-3xl text-2xl mb-6">Popular Products</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {products.map((product) => {
-            const { name, desc, price, img } = product;
+          {corporate.map((product) => {
+            const { name, desc, price, img, id, type } = product;
 
             return (
               <Product
                 key={name + img + price}
+                id={id}
+                type={type}
+                name={name}
+                desc={desc}
+                price={price}
+                img={img}
+              />
+            );
+          })}
+
+          {dress.map((product) => {
+            const { name, desc, price, img, id, type } = product;
+
+            return (
+              <Product
+                key={name + img + price}
+                id={id}
+                type={type}
                 name={name}
                 desc={desc}
                 price={price}
