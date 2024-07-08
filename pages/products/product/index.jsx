@@ -8,9 +8,13 @@ import { RiShareForward2Fill } from "react-icons/ri";
 import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 
+import { corporate } from "@/data";
+
 export default function Product() {
 
   const [ activeColor, setActiveColor ] = useState(0);
+  const [ selectedImage, setSelectedImage ] = useState(corporate[corporate.length - 1]);
+  const [ tab, setTab ] = useState("descriptions");
 
   return (
     <main>
@@ -33,69 +37,29 @@ export default function Product() {
       <section className="-mx-4 md:mx-0 mt-4">
         <div className="flex gap-4">
           <div className="flex-col justify-between shrink-0 hidden lg:flex mx-4 md:mx-0">
-            <Image
-              src="/img/product/1.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/2.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/3.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/4.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/5.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/6.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/7.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
-            <Image
-              src="/img/product/8.png"
-              alt="dress"
-              width={1000}
-              height={1000}
-              className="w-16 h-14 object-cover"
-            />
+            {
+              corporate.map(product => {
+                return (
+                  <div className={`${selectedImage.img === product.img && "border-2 border-primary"} p-1 cursor-pointer`} key={product.img}>
+                    <Image
+                      src={product.img}
+                      alt="dress"
+                      width={1000}
+                      height={1000}
+                      className="w-16 h-14 object-cover"
+                      onClick={() => setSelectedImage(product)}
+                    />
+                  </div>
+                )
+              })
+            }
           </div>
 
           <div className="grid md:grid-cols-2 grid-col-1 gap-8">
             <div>
               <div className="md:h-full h-80 w-full relative">
                 <Image
-                  src="/img/corporate_lady.png"
+                  src={selectedImage.img}
                   fill
                   alt="corporate dress"
                   className="h-full w-full object-cover object-top"
@@ -131,17 +95,39 @@ export default function Product() {
 
               <div className="mt-4">
                 <ul className="w-full flex justify-between">
-                  <li className="font-bold lg:text-xl text-base">Descriptions</li>
-                  <li className="lg:text-xl text-base text-gray-500 font-medium">
+                  <li className={`${tab === "descriptions" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("descriptions")}>Descriptions</li>
+                  <li className={`${tab === "specifications" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("specifications")}>
                     Specifications
                   </li>
-                  <li className="lg:text-xl text-base text-gray-500 font-medium">Details</li>
+                  <li className={`${tab === "details" ? "font-bold" : "font-medium"} cursor-pointer hover:font-semibold lg:text-xl text-base`} onClick={() => setTab("details")}>Details</li>
                 </ul>
 
                 <p className="text-gray-600 mt-2">
-                  Classic women&apos;s tailored suit from Arries place. Single
-                  breasted design, notch lapel, two button closure, tailored fit
-                  for a flattering silhouette.
+                  {
+                    tab === "descriptions" && (
+                      <span>
+                        Classic women&apos;s tailored suit from Arries place. Single
+                        breasted design, notch lapel, two button closure, tailored fit
+                        for a flattering silhouette.
+                      </span>
+                    )
+                  }
+
+{
+                    tab === "specifications" && (
+                      <span>
+                        Specifications Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt voluptatibus debitis. Optio, tenetur quos! Numquam ex facere quisquam quasi!
+                      </span>
+                    )
+                  }
+
+{
+                    tab === "details" && (
+                      <span>
+                        Details Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt voluptatibus debitis. Optio, tenetur quos! Numquam ex facere quisquam quasi!
+                      </span>
+                    )
+                  }
                 </p>
               </div>
 

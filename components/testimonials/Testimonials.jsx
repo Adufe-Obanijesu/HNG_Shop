@@ -40,7 +40,7 @@ export default function Testimonials() {
           className={`flex transition-transform duration-300 ${transformStyle}`}
           
         >
-          {testimonies.map((testimony, index) => {
+          {testimonies.map((testimony) => {
             const { img, text, name, career } = testimony;
 
             return (
@@ -65,7 +65,7 @@ export default function Testimonials() {
               currentIndex === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
             }`}
           >
-            <RxCaretLeft className="text-3xl text-gray-600" />
+            <RxCaretLeft className="text-3xl text-primary" />
           </button>
           <button
             onClick={handleNext}
