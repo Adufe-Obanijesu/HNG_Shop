@@ -1,6 +1,6 @@
 import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
 import { PiHeartBold, PiPackage } from "react-icons/pi";
@@ -9,19 +9,39 @@ import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 
 import { corporate } from "@/data";
+import { useRouter } from "next/router";
 
 export default function Product() {
 
+  const router = useRouter();
+
   const [ activeColor, setActiveColor ] = useState(0);
-  const [ selectedImage, setSelectedImage ] = useState(corporate[corporate.length - 1]);
+  const [ current, setCurrent ] = useState(0)
+  const [ selectedImage, setSelectedImage ] = useState(current);
   const [ tab, setTab ] = useState("descriptions");
+
+  useEffect(() => {
+    setSelectedImage(corporate[current]);
+    const productImage = setInterval(() => {
+      if (current > 6) {
+        setCurrent(0);
+        setSelectedImage(corporate[0]);
+      } else {
+        setSelectedImage(corporate[current + 1]);
+        setCurrent(current + 1);
+      }
+    }, 2000);
+    return () => clearInterval(productImage);
+  }, [current]);
 
   return (
     <main>
 
       <div className="flex md:justify-end items-center justify-between mt-4">
         <div className="md:hidden">
-          <RxCaretLeft className="text-4xl" />
+          <RxCaretLeft className="text-4xl" onClick={() => {
+            router.back();
+          }} />
         </div>
         <div className="flex gap-4">
           <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
@@ -53,6 +73,7 @@ export default function Product() {
                 )
               })
             }
+
           </div>
 
           <div className="grid md:grid-cols-2 grid-col-1 gap-8">
@@ -64,6 +85,17 @@ export default function Product() {
                   alt="corporate dress"
                   className="h-full w-full object-cover object-top"
                 />
+              </div>
+
+              <div className="h-center gap-2 mt-4 lg:hidden">
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 0 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(0)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 1 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(1)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 2 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(2)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 3 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(3)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 4 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(4)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 5 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(5)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 6 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(6)}></span>
+                <span className={`h-2.5 w-2.5 cursor-pointer ${current === 7 ? "bg-primary" : "bg-gray-300"} rounded-full`} onClick={() => setCurrent(7)}></span>
               </div>
             </div>
 

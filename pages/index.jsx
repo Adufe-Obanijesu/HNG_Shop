@@ -81,7 +81,9 @@ export default function Home() {
             </div>
             <h1 className="font-semibold text-center xl:text-6xl md:text-4xl text-3xl">ARRIVAL</h1>
             <div className="h-center">
-              <button className="btn btn-border mx-auto">Shop Now</button>
+              <Link href="/products">
+                <button className="btn btn-border mx-auto">Shop Now</button>
+              </Link>
             </div>
           </div>
 

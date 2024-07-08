@@ -155,6 +155,29 @@ export default function Checkout() {
       <br />
       <br />
 
+      <div>
+        <div className="bg-black bg-opacity-50 z-10 h-full w-full backdrop-blur-sm fixed top-0 left-0"></div>
+        <div className="fixed top-0 left-0 h-full w-full hv-center z-20">
+          <div className="bg-white px-10 py-8 lg:w-1/4 md:w-2/5 rounded-lg">
+            <div className="h-center">
+              <Image src="/img/loader.png" alt="loader" width={50} height={50} className="animate-spin" />
+            </div>
+
+            <div className="mt-4">
+              <h4 className="text-center font-bold text-md">
+                Payment in progress
+              </h4>
+
+              <p className="text-center font-medium text-sm">
+                Please, wait a few moments
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+
     </main>
   );
 }
