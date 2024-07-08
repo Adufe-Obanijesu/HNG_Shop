@@ -12,7 +12,7 @@ import Link from "next/link";
 export default function Home() {
 
   const corporate = shop.filter(product => product.type === "corporate").slice(0,4);
-  const dress = shop.filter(product => product.type === "corporate").slice(0,4);
+  const dress = shop.filter(product => product.type === "dress").slice(0,4);
 
   const { state } = useContext(Context);
 
