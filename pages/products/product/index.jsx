@@ -8,7 +8,7 @@ import { RiShareForward2Fill } from "react-icons/ri";
 import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 
-import { corporate } from "@/data";
+import { productDetails } from "@/data";
 import { useRouter } from "next/router";
 
 export default function Product() {
@@ -21,13 +21,13 @@ export default function Product() {
   const [ tab, setTab ] = useState("descriptions");
 
   useEffect(() => {
-    setSelectedImage(corporate[current]);
+    setSelectedImage(productDetails[current]);
     const productImage = setInterval(() => {
       if (current > 6) {
         setCurrent(0);
-        setSelectedImage(corporate[0]);
+        setSelectedImage(productDetails[0]);
       } else {
-        setSelectedImage(corporate[current + 1]);
+        setSelectedImage(productDetails[current + 1]);
         setCurrent(current + 1);
       }
     }, 2000);
@@ -58,7 +58,7 @@ export default function Product() {
         <div className="flex gap-4">
           <div className="flex-col justify-between shrink-0 hidden lg:flex mx-4 md:mx-0">
             {
-              corporate.map(product => {
+              productDetails.map(product => {
                 return (
                   <div className={`${selectedImage.img === product.img && "border-2 border-primary"} p-1 cursor-pointer`} key={product.img}>
                     <Image

@@ -233,3 +233,54 @@ export const checkout = [
         img: "/img/checkout/1.png",
     }
 ]
+
+export const productDetails = [
+    {
+        name: "Zee Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "302,000",
+        img: "/img/product carousel/1.jpeg",
+    },
+    {
+        name: "Zara Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "300,000",
+        img: "/img/product carousel/2.jpeg",
+    },
+    {
+        name: "Beam Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "200,000",
+        img: "/img/product carousel/3.jpeg",
+    },
+    {
+        name: "Zamaih Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "150,000",
+        img: "/img/product carousel/4.jpeg",
+    },
+    {
+        name: "Zoe Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "102,000",
+        img: "/img/product carousel/5.jpeg",
+    },
+    {
+        name: "Tubo Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "102,000",
+        img: "/img/product carousel/6.jpeg",
+    },
+    {
+        name: "Blaze Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "150,000",
+        img: "/img/product carousel/7.jpeg",
+    },
+    {
+        name: "Mays Dress",
+        desc: "Elegant summer dress made with plain silk",
+        price: "150,000",
+        img: "/img/product carousel/8.jpeg",
+    },
+]
