@@ -1,5 +1,6 @@
 import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
+import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
 import { PiHeartBold, PiPackage } from "react-icons/pi";
@@ -8,6 +9,9 @@ import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 
 export default function Product() {
+
+  const [ activeColor, setActiveColor ] = useState(0);
+
   return (
     <main>
 
@@ -145,11 +149,21 @@ export default function Product() {
                 <h5 className="font-semibold">Color</h5>
 
                 <div className="mt-2 flex gap-4">
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-gray-500"></div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-black"></div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-yellow-500"></div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-red-500"></div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-purple-500"></div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-gray-500 hv-center cursor-pointer" onClick={() => setActiveColor(0)}>
+                    <div className={`h-7 w-7 rounded-full bg-gray-500 ${activeColor === 0 && "border-2"} border-gray-100`}></div>
+                  </div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-black hv-center cursor-pointer" onClick={() => setActiveColor(1)}>
+                    <div className={`h-7 w-7 rounded-full bg-black ${activeColor === 1 && "border-2"} border-gray-100`}></div>
+                  </div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-yellow-500 hv-center cursor-pointer" onClick={() => setActiveColor(2)}>
+                    <div className={`h-7 w-7 rounded-full bg-yellow-500 ${activeColor === 2 && "border-2"} border-gray-100`}></div>
+                  </div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-red-500 hv-center cursor-pointer" onClick={() => setActiveColor(3)}>
+                    <div className={`h-7 w-7 rounded-full bg-red-500 ${activeColor === 3 && "border-2"} border-gray-100`}></div>
+                  </div>
+                  <div className="w-8 h-8 shrink-0 rounded-full bg-purple-500 hv-center cursor-pointer" onClick={() => setActiveColor(4)}>
+                    <div className={`h-7 w-7 rounded-full bg-purple-500 ${activeColor === 4 && "border-2"} border-gray-100`}></div>
+                  </div>
                 </div>
               </div>
 
@@ -177,7 +191,7 @@ export default function Product() {
                 </div>
               </div>
 
-              <div className="mt-4 md:mt-0">
+              <div className="mt-4">
                 <h5 className="font-bold hidden md:block">Quantity</h5>
 
                 <div className="mt-8 md:mt-4 flex flex-wrap justify-center md:justify-normal gap-8">
@@ -201,7 +215,7 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="grid lg:grid-cols-2 gap-4 -mx-4 md:mx-0">
+      <section className="flex justify-end -mx-4 md:mx-0">
         <div className="lg:col-start-2 lg:pl-10">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />

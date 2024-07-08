@@ -1,5 +1,4 @@
 import CheckoutItem from "@/components/CheckoutItem";
-import Testimonials from "@/components/testimonials/Testimonials";
 import { checkout } from "@/data";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa";
@@ -113,13 +112,13 @@ export default function Checkout() {
                   <div className="btn btn-white w-auto">Card</div>
                 </div>
 
-                <div className="flex md:gap-8 gap-3">
+                <div className="flex xl:gap-8 gap-3">
                   <Image
                     src="/img/card.png"
                     alt="card"
                     width={1000}
                     height={1000}
-                    className="w-full h-auto"
+                    className="w-full md:w-[85%] lg:w-full h-auto"
                   />
 
                   <div>
@@ -153,7 +152,9 @@ export default function Checkout() {
         </div>
       </section>
 
-      <Testimonials />
+      <br />
+      <br />
+
     </main>
   );
 }

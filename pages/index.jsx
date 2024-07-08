@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { products } from "@/data";
 import Countdown from "@/components/Countdown";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -104,20 +105,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-        {products.map((product) => {
-          const { name, desc, price, img } = product;
+      <section className="">
 
-          return (
-            <Product
-              key={name + img + price}
-              name={name}
-              desc={desc}
-              price={price}
-              img={img}
-            />
-          );
-        })}
+        <h3 className="font-bold md:text-3xl text-2xl mb-6">Popular Products</h3>
+        <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
+          {products.map((product) => {
+            const { name, desc, price, img } = product;
+
+            return (
+              <Product
+                key={name + img + price}
+                name={name}
+                desc={desc}
+                price={price}
+                img={img}
+              />
+            );
+          })}
+        </div>
+
+        <div className="flex justify-end mt-8">
+          <Link href="/products">
+            <button className="secondary-button">
+              View more
+            </button>
+          </Link>
+        </div>
       </section>
 
       <Testimonials />

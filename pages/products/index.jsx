@@ -4,6 +4,7 @@ import { PiHeartBold } from "react-icons/pi";
 import { categories, corporate, dress } from "@/data";
 import Image from "next/image";
 import Product from "@/components/Product";
+import Testimonials from "@/components/testimonials/Testimonials";
 
 export default function Products() {
   return (
@@ -96,9 +97,8 @@ export default function Products() {
         </div>
       </section>
 
-      <br />
-      <br />
-      <br />
+      <Testimonials />
+      
     </main>
   );
 }

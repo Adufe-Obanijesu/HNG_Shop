@@ -6,6 +6,7 @@ import { PiPackage } from "react-icons/pi";
 
 import { checkout } from "@/data";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Cart() {
   return (
@@ -19,8 +20,8 @@ export default function Cart() {
       </div>
 
       <section className="mt-4">
-        <div className="grid md:grid-cols-4 gap-4 border-b pb-8">
-          <div className="md:col-span-3 border-t pt-2">
+        <div className="grid lg:grid-cols-4 gap-4 border-b pb-8">
+          <div className="lg:col-span-3 border-t pt-2">
             {checkout.map((item) => {
               const { name, color, size, price, qty, img } = item;
 
@@ -38,7 +39,7 @@ export default function Cart() {
             })}
           </div>
 
-          <div className="flex flex-col gap-8 mt-4">
+          <div className="flex flex-col gap-8 mt-4 md:w-2/3 lg:w-auto">
             <div className="order-2 md:order-1">
               <h4 className="font-bold text-2xl mb-4">Summary</h4>
 
@@ -63,9 +64,11 @@ export default function Cart() {
               </div>
 
               <div className="mt-8 md:hidden">
-                <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                  Checkout
-                </button>
+                <Link href="/checkout">
+                  <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
+                    Checkout
+                  </button>
+                </Link>
               </div>
 
               <div className="flex justify-center mt-4 md:hidden">
@@ -87,9 +90,11 @@ export default function Cart() {
               </div>
 
               <div className="mt-8 hidden md:block">
-                <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                  Checkout
-                </button>
+                <Link href="/checkout">
+                  <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -97,7 +102,7 @@ export default function Cart() {
         </div>
       </section>
 
-      <section className="grid lg:grid-cols-2 gap-4 -mx-4 md:mx-0">
+      <section className="flex justify-end -mx-4 md:mx-0">
         <div className="lg:col-start-2 lg:pl-10">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />

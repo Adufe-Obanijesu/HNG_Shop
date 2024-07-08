@@ -1,10 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { RxCaretDown } from "react-icons/rx";
 
 export default function Navbar() {
+
+  const router = useRouter();
+  const path = router.pathname;
+
   return (
     <nav className="hidden md:block">
       <div className="flex justify-between items-center">
@@ -22,9 +27,9 @@ export default function Navbar() {
 
         <ul className="flex gap-8 items-center">
           <Link href="/">
-            <li className="active">Home</li>
+            <li className={`${path.includes("cart") || path.includes("checkout") || path.includes("product") ? "" : "active"}`}>Home</li>
           </Link>
-          <Link href="/products">
+          <Link href="/products" className={`${path.includes("product") && "active"}`}>
             <li>Shop</li>
           </Link>
           <Link href="/products">
