@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
+import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function Product({ productId }) {
   const router = useRouter();
@@ -136,7 +137,7 @@ export default function Product({ productId }) {
                 <div className="v-center mt-4">
                   <TbCurrencyNaira className="text-2xl text-primary" />
                   <h3 className="font-bold text-primary md:text-xl text-lg">
-                    {product.price}
+                    {formatNumberWithCommas(product.price)}
                   </h3>
                 </div>
               </div>

@@ -17,7 +17,7 @@ export default function Navbar() {
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <nav className="sticky top-0 bg-white xl:-mx-16 xl:px-16 md:-mx-8 md:px-8 -mx-4 px-4 pt-2 z-50">
+    <nav className="sticky top-0 bg-white xl:-mx-16 xl:px-16 md:-mx-8 md:px-8 -mx-4 px-4 pt-2 z-40">
       <div className="flex justify-between items-center">
         <div className="md:w-[30%] lg:w-[20%] xl:w-[30%]">
           <Link href="/">

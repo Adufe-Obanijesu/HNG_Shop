@@ -10,6 +10,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import { Context } from "@/pages/_app";
 import { useContext } from "react";
 import { useRouter } from "next/router";
+import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function Checkout() {
   const router = useRouter();
@@ -187,7 +188,7 @@ export default function Checkout() {
             <div className="v-center ml-10">
               <TbCurrencyNaira className="text-xl text-primary" />
               <h3 className="font-bold text-primary">
-                {state.cart.length === 0 ? 0 : subtotal + 10000}
+                {state.cart.length === 0 ? 0 : formatNumberWithCommas(subtotal + 10000)}
               </h3>
             </div>
           </div>
@@ -219,8 +220,8 @@ export default function Checkout() {
 
       {pay === "inProgress" && (
         <div className="">
-          <div className="bg-black bg-opacity-50 z-10 h-full w-full backdrop-blur-sm fixed top-0 left-0"></div>
-          <div className="fixed top-0 left-0 h-full w-full hv-center z-20">
+          <div className="bg-black bg-opacity-50 z-40 h-full w-full backdrop-blur-sm fixed top-0 left-0"></div>
+          <div className="fixed top-0 left-0 h-full w-full hv-center z-50">
             <div className="bg-white px-10 py-8 lg:w-1/4 md:w-2/5 rounded-2xl">
               <div className="h-center">
                 <Image
@@ -248,7 +249,7 @@ export default function Checkout() {
 
       {pay === "successful" && (
         <div>
-          <div className="fixed top-0 left-0 h-full w-full hv-center z-10">
+          <div className="fixed top-0 left-0 h-full w-full hv-center z-50">
             <div
               className="bg-black bg-opacity-50 h-full w-full backdrop-blur-sm fixed top-0 left-0 cursor-pointer"
               onClick={reset}

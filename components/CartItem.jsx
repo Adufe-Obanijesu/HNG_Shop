@@ -6,6 +6,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
 import Link from "next/link";
+import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function CartItem({
   id,
@@ -97,7 +98,7 @@ export default function CartItem({
         <div className="flex md:block flex-col justify-between items-end">
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{price * qty}</h3>
+            <h3 className="font-bold">{formatNumberWithCommas(price * qty)}</h3>
           </div>
 
           <div className="px-4 py-2 rounded-lg border-2 border-primary v-center gap-3 md:hidden">

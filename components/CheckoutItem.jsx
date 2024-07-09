@@ -6,6 +6,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
 import Link from "next/link";
+import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function CheckoutItem({
   id,
@@ -95,7 +96,7 @@ export default function CheckoutItem({
         <div>
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{price}</h3>
+            <h3 className="font-bold">{formatNumberWithCommas(price)}</h3>
           </div>
         </div>
       </div>
@@ -124,7 +125,7 @@ export default function CheckoutItem({
         <div>
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{price * qty}</h3>
+            <h3 className="font-bold">{formatNumberWithCommas(price * qty)}</h3>
           </div>
         </div>
       </div>

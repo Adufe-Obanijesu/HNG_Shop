@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import { Context } from "@/pages/_app";
 import { useContext } from "react";
+import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function Cart() {
   const { state } = useContext(Context);
@@ -72,7 +73,7 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg text-gray-600" />
-                    <h3 className="text-gray-600">{subtotal}</h3>
+                    <h3 className="text-gray-600">{formatNumberWithCommas(subtotal)}</h3>
                   </div>
                 </div>
 
@@ -84,7 +85,7 @@ export default function Cart() {
                     <h3
                       className={`text-gray-600 ${state.cart.length === 0 && "line-through"}`}
                     >
-                      10000
+                      10,000
                     </h3>
                   </div>
                 </div>
@@ -97,7 +98,7 @@ export default function Cart() {
                     <h3
                       className={`font-bold ${state.cart.length === 0 && "line-through"}`}
                     >
-                      {subtotal + 10000}
+                      {formatNumberWithCommas(subtotal + 10000)}
                     </h3>
                   </div>
                 </div>

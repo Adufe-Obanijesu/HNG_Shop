@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
 
+import { formatNumberWithCommas } from "@/utils/functions";
+
 export default function Product({ id, name, desc, price, img, type }) {
   const { state, dispatch } = useContext(Context);
 
@@ -75,7 +77,7 @@ export default function Product({ id, name, desc, price, img, type }) {
       <div className="flex justify-between">
         <div className="v-center">
           <TbCurrencyNaira className="md:text-3xl text-xl" />
-          <span className="font-bold md:text-lg">{price}</span>
+          <span className="font-bold md:text-lg">{formatNumberWithCommas(price)}</span>
         </div>
 
         <div className="v-center xl:gap-4 gap-2">
