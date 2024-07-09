@@ -13,52 +13,59 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
 
-export default function Product({productId}) {
-
+export default function Product({ productId }) {
   const router = useRouter();
 
   const { state, dispatch } = useContext(Context);
 
   const product = shop[Number(productId) - 1];
 
-  const [ activeColor, setActiveColor ] = useState(0);
-  const [ activeSize, setActiveSize ] = useState("S");
-  const [ tab, setTab ] = useState("descriptions");
+  const [activeColor, setActiveColor] = useState(0);
+  const [activeSize, setActiveSize] = useState("S");
+  const [tab, setTab] = useState("descriptions");
 
-  const productDetails = shop.filter(item => item.type === product.type);
+  const productDetails = shop.filter((item) => item.type === product.type);
 
   const { id, name, desc, price, img, type } = product;
-  
+
   const handleAddToCart = (product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: {
-      id,
-      name,
-      desc,
-      price,
-      img,
-      type,
-    } });
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id,
+        name,
+        desc,
+        price,
+        img,
+        type,
+      },
+    });
   };
 
   const handleRemoveFromCart = () => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: {
-      id,
-      name,
-      desc,
-      price,
-      img,
-      type,
-    } });
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        name,
+        desc,
+        price,
+        img,
+        type,
+      },
+    });
   };
 
   return (
     <main>
-
       <div className="flex md:justify-end items-center justify-between mt-4">
         <div className="md:hidden">
-          <RxCaretLeft className="text-4xl" onClick={() => {
-            router.back();
-          }} />
+          <RxCaretLeft
+            className="text-4xl"
+            onClick={() => {
+              router.back();
+            }}
+          />
         </div>
         <div className="flex gap-4">
           <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
@@ -74,23 +81,25 @@ export default function Product({productId}) {
       <section className="-mx-4 md:mx-0 mt-4">
         <div className="flex gap-4">
           <div className="flex-col justify-between shrink-0 hidden lg:flex mx-4 md:mx-0">
-            {
-              productDetails.map(product => {
-                return (
-                  <div className="p-1 cursor-pointer hover:border-2 border-primary" key={product.img}>
-                    <Image
-                      src={product.img}
-                      alt="dress"
-                      width={1000}
-                      height={1000}
-                      className="w-16 h-14 object-cover"
-                      onClick={() => {router.push(`/products/${product.id}`)}}
-                    />
-                  </div>
-                )
-              })
-            }
-
+            {productDetails.map((product) => {
+              return (
+                <div
+                  className="p-1 cursor-pointer hover:border-2 border-primary"
+                  key={product.img}
+                >
+                  <Image
+                    src={product.img}
+                    alt="dress"
+                    width={1000}
+                    height={1000}
+                    className="w-16 h-14 object-cover"
+                    onClick={() => {
+                      router.push(`/products/${product.id}`);
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           <div className="grid md:grid-cols-2 grid-col-1 gap-8 grow">
@@ -103,11 +112,9 @@ export default function Product({productId}) {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
-
             </div>
 
             <div className="md:py-8 mx-4 md:mx-0">
-
               <div className="flex justify-between items-center md:block">
                 <div>
                   <h3 className="font-bold text-2xl">{product.name}</h3>
@@ -128,43 +135,54 @@ export default function Product({productId}) {
 
                 <div className="v-center mt-4">
                   <TbCurrencyNaira className="text-2xl text-primary" />
-                  <h3 className="font-bold text-primary md:text-xl text-lg">{product.price}</h3>
+                  <h3 className="font-bold text-primary md:text-xl text-lg">
+                    {product.price}
+                  </h3>
                 </div>
               </div>
 
               <div className="mt-4">
                 <ul className="w-full flex justify-between">
-                  <li className={`${tab === "descriptions" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("descriptions")}>Descriptions</li>
-                  <li className={`${tab === "specifications" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("specifications")}>
+                  <li
+                    className={`${tab === "descriptions" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
+                    onClick={() => setTab("descriptions")}
+                  >
+                    Descriptions
+                  </li>
+                  <li
+                    className={`${tab === "specifications" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
+                    onClick={() => setTab("specifications")}
+                  >
                     Specifications
                   </li>
-                  <li className={`${tab === "details" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`} onClick={() => setTab("details")}>Details</li>
+                  <li
+                    className={`${tab === "details" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
+                    onClick={() => setTab("details")}
+                  >
+                    Details
+                  </li>
                 </ul>
 
                 <p className="text-gray-600 mt-2 w-full">
-                  {
-                    tab === "descriptions" && (
-                      <span>
-                        {product.name} - {product.desc}
-                      </span>
-                    )
-                  }
+                  {tab === "descriptions" && (
+                    <span>
+                      {product.name} - {product.desc}
+                    </span>
+                  )}
 
-{
-                    tab === "specifications" && (
-                      <span>
-                        Specifications Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </span>
-                    )
-                  }
+                  {tab === "specifications" && (
+                    <span>
+                      Specifications Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit.
+                    </span>
+                  )}
 
-{
-                    tab === "details" && (
-                      <span>
-                        Details Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </span>
-                    )
-                  }
+                  {tab === "details" && (
+                    <span>
+                      Details Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit.
+                    </span>
+                  )}
                 </p>
               </div>
 
@@ -172,20 +190,45 @@ export default function Product({productId}) {
                 <h5 className="font-semibold">Color</h5>
 
                 <div className="mt-2 flex gap-4">
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-gray-500 hv-center cursor-pointer" onClick={() => setActiveColor(0)}>
-                    <div className={`h-7 w-7 rounded-full bg-gray-500 ${activeColor === 0 && "border-2"} border-gray-100`}></div>
+                  <div
+                    className="w-8 h-8 shrink-0 rounded-full bg-gray-500 hv-center cursor-pointer"
+                    onClick={() => setActiveColor(0)}
+                  >
+                    <div
+                      className={`h-7 w-7 rounded-full bg-gray-500 ${activeColor === 0 && "border-2"} border-gray-100`}
+                    ></div>
                   </div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-black hv-center cursor-pointer" onClick={() => setActiveColor(1)}>
-                    <div className={`h-7 w-7 rounded-full bg-black ${activeColor === 1 && "border-2"} border-gray-100`}></div>
+                  <div
+                    className="w-8 h-8 shrink-0 rounded-full bg-black hv-center cursor-pointer"
+                    onClick={() => setActiveColor(1)}
+                  >
+                    <div
+                      className={`h-7 w-7 rounded-full bg-black ${activeColor === 1 && "border-2"} border-gray-100`}
+                    ></div>
                   </div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-yellow-500 hv-center cursor-pointer" onClick={() => setActiveColor(2)}>
-                    <div className={`h-7 w-7 rounded-full bg-yellow-500 ${activeColor === 2 && "border-2"} border-gray-100`}></div>
+                  <div
+                    className="w-8 h-8 shrink-0 rounded-full bg-yellow-500 hv-center cursor-pointer"
+                    onClick={() => setActiveColor(2)}
+                  >
+                    <div
+                      className={`h-7 w-7 rounded-full bg-yellow-500 ${activeColor === 2 && "border-2"} border-gray-100`}
+                    ></div>
                   </div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-red-500 hv-center cursor-pointer" onClick={() => setActiveColor(3)}>
-                    <div className={`h-7 w-7 rounded-full bg-red-500 ${activeColor === 3 && "border-2"} border-gray-100`}></div>
+                  <div
+                    className="w-8 h-8 shrink-0 rounded-full bg-red-500 hv-center cursor-pointer"
+                    onClick={() => setActiveColor(3)}
+                  >
+                    <div
+                      className={`h-7 w-7 rounded-full bg-red-500 ${activeColor === 3 && "border-2"} border-gray-100`}
+                    ></div>
                   </div>
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-purple-500 hv-center cursor-pointer" onClick={() => setActiveColor(4)}>
-                    <div className={`h-7 w-7 rounded-full bg-purple-500 ${activeColor === 4 && "border-2"} border-gray-100`}></div>
+                  <div
+                    className="w-8 h-8 shrink-0 rounded-full bg-purple-500 hv-center cursor-pointer"
+                    onClick={() => setActiveColor(4)}
+                  >
+                    <div
+                      className={`h-7 w-7 rounded-full bg-purple-500 ${activeColor === 4 && "border-2"} border-gray-100`}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -194,17 +237,29 @@ export default function Product({productId}) {
                 <h5 className="font-semibold">Size</h5>
 
                 <div className="mt-2 flex items-center gap-4">
-                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "S" && "bg-primary text-white"}`} onClick={() => setActiveSize("S")}>
+                  <span
+                    className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "S" && "bg-primary text-white"}`}
+                    onClick={() => setActiveSize("S")}
+                  >
                     S
                   </span>
-                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "M" && "bg-primary text-white"}`} onClick={() => setActiveSize("M")}>
+                  <span
+                    className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "M" && "bg-primary text-white"}`}
+                    onClick={() => setActiveSize("M")}
+                  >
                     M
                   </span>
-                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "L" && "bg-primary text-white"}`} onClick={() => setActiveSize("L")}>
+                  <span
+                    className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "L" && "bg-primary text-white"}`}
+                    onClick={() => setActiveSize("L")}
+                  >
                     L
                   </span>
 
-                  <span className={`border cursor-pointer rounded px-2.5 py-2 font-semibold ${activeSize === "XL" && "bg-primary text-white"}`} onClick={() => setActiveSize("XL")}>
+                  <span
+                    className={`border cursor-pointer rounded px-2.5 py-2 font-semibold ${activeSize === "XL" && "bg-primary text-white"}`}
+                    onClick={() => setActiveSize("XL")}
+                  >
                     XL
                   </span>
 
@@ -219,11 +274,20 @@ export default function Product({productId}) {
 
                 <div className="mt-8 md:mt-4 flex flex-wrap justify-center md:justify-normal gap-8">
                   <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
-                    <span className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full" onClick={handleRemoveFromCart}>
+                    <span
+                      className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full"
+                      onClick={handleRemoveFromCart}
+                    >
                       <FaMinus className="text-white text-sm" />
                     </span>
-                    <span className="text-gray-400 font-medium text-sm">{state.cart.find(item => item.id === product.id)?.qty || 0}</span>
-                    <span className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full" onClick={handleAddToCart}>
+                    <span className="text-gray-400 font-medium text-sm">
+                      {state.cart.find((item) => item.id === product.id)?.qty ||
+                        0}
+                    </span>
+                    <span
+                      className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
+                      onClick={handleAddToCart}
+                    >
                       <FaPlus className="text-white text-sm" />
                     </span>
                   </div>
@@ -251,10 +315,10 @@ export default function Product({productId}) {
             <span className="font-bold">Free Shipping & Returns:</span>
             <span className="font-medium">
               On all orders over
-                <span className="shrink-0 whitespace-nowrap">
-                    <TbCurrencyNaira className="text-xl mb-[3px] inline" />
-                    <span className="">50,000</span>
-                </span>
+              <span className="shrink-0 whitespace-nowrap">
+                <TbCurrencyNaira className="text-xl mb-[3px] inline" />
+                <span className="">50,000</span>
+              </span>
             </span>
           </p>
 
@@ -284,11 +348,10 @@ export default function Product({productId}) {
 }
 
 export async function getServerSideProps(ctx) {
-
   const { product: productId } = ctx.query;
   return {
     props: {
       productId,
-    }
-  }
+    },
+  };
 }

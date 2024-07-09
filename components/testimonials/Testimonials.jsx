@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import Testimony from "./Testimony";
 
@@ -11,7 +11,7 @@ const styles = [
   "-translate-x-[200%]",
   "lg:-translate-x-[40%]",
   "lg:-translate-x-[80%]",
-]
+];
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,11 +22,15 @@ export default function Testimonials() {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, testimonies.length - 1));
+    setCurrentIndex((prevIndex) =>
+      Math.min(prevIndex + 1, testimonies.length - 1),
+    );
   };
 
   useEffect(() => {
-    setTransformStyle(`-translate-x-[${currentIndex * 100}%] lg:-translate-x-[${currentIndex * 40}%]`);
+    setTransformStyle(
+      `-translate-x-[${currentIndex * 100}%] lg:-translate-x-[${currentIndex * 40}%]`,
+    );
   }, [currentIndex]);
 
   return (
@@ -38,7 +42,6 @@ export default function Testimonials() {
       <div className="relative overflow-hidden md:mt-12 mt-4">
         <div
           className={`flex transition-transform duration-300 ${transformStyle}`}
-          
         >
           {testimonies.map((testimony) => {
             const { img, text, name, career } = testimony;
@@ -47,7 +50,7 @@ export default function Testimonials() {
               <div
                 key={name + text}
                 className={`lg:w-3/5 w-full h-full flex-shrink-0 p-4`}
-                style={{ transition: 'transform 0.3s' }}
+                style={{ transition: "transform 0.3s" }}
               >
                 <Testimony img={img} text={text} name={name} career={career} />
               </div>
@@ -62,7 +65,9 @@ export default function Testimonials() {
             onClick={handlePrev}
             disabled={currentIndex === 0}
             className={`bg-white h-12 w-12 rounded-full shadow-md hv-center ${
-              currentIndex === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+              currentIndex === 0
+                ? "cursor-not-allowed opacity-50"
+                : "cursor-pointer"
             }`}
           >
             <RxCaretLeft className="text-3xl text-primary" />
@@ -71,7 +76,9 @@ export default function Testimonials() {
             onClick={handleNext}
             disabled={currentIndex === testimonies.length - 1}
             className={`bg-white h-12 w-12 rounded-full shadow-md hv-center ${
-              currentIndex === testimonies.length - 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+              currentIndex === testimonies.length - 1
+                ? "cursor-not-allowed opacity-50"
+                : "cursor-pointer"
             }`}
           >
             <RxCaretRight className="text-3xl text-primary" />
@@ -81,4 +88,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

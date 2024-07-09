@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Arries Place
 
-## Getting Started
+Arries Place is a fashion designer shop built using Next.js. This project is a static site with five main routes and follows a design from Figma.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Routes](#routes)
+- [Figma Design](#figma-design)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#technologies)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routes
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The application has the following routes:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. **Homepage** - `/`
+2. **Shop** - `/products`
+3. **Product Details** - `/products/:id`
+4. **Cart** - `/cart`
+5. **Checkout** - `/checkout`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Figma Design
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The design followed for this project can be found on Figma: [Arries Place Design](https://www.figma.com/design/smqHs2f95LVI5H3zkbUqt8/Arries-2?m=auto&t=nh5QLiXBsdT5Flxk-6)
 
-## Learn More
+## Demo
 
-To learn more about Next.js, take a look at the following resources:
+The site is hosted on Netlify and can be accessed at: [Arries Place on Netlify](https://main--clinquant-hotteok-5dfeb9.netlify.app/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To run this project locally, follow these steps:
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    git clone https://github.com/Adufe-Obanijesu/hng_shop
+    cd hng-shop
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Usage
+
+Navigate through the routes to explore the features of the shop:
+
+- **Homepage**: A welcoming page showcasing featured products and promotions.
+- **Shop**: Browse through all available products.
+- **Product Details**: View detailed information about a specific product.
+- **Cart**: See the items added to your cart and adjust quantities.
+- **Checkout**: Complete your purchase by filling out the necessary details.
+
+## Technologies
+
+This project is built with the following technologies:
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Netlify](https://www.netlify.com/)
+
+## License
+
+This project is licensed under the MIT License.

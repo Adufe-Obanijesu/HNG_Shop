@@ -5,7 +5,10 @@ import { FaFacebook } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-primary xl:p-24 md:py-16 p-8 xl:-mx-16 md:-mx-8 -mx-4">
+    <footer
+      id="contact"
+      className="bg-primary xl:p-24 md:py-16 p-8 xl:-mx-16 md:-mx-8 -mx-4"
+    >
       <div className="grid xl:grid-cols-2 md:grid-cols-5 gap-4">
         <div className="md:flex md:col-span-2 xl:col-span-1">
           <div className="flex flex-col items-center">
@@ -26,7 +29,9 @@ export default function Footer() {
 
         <div className="grid md:grid-cols-3 grid-cols-2 gap-y-8  md:col-span-3 xl:col-span-1 gap-4 text-white mt-8 md:mt-0">
           <div>
-            <h4 className="font-semibold uppercase mb-6 text-sm md:text-base">Customer service</h4>
+            <h4 className="font-semibold uppercase mb-6 text-sm md:text-base">
+              Customer service
+            </h4>
 
             <ul className="flex flex-col gap-4 mt-4">
               <li>Orders & Delivery</li>

@@ -28,7 +28,6 @@ export default function Products() {
               />
             </div>
 
-
             <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
               <RiShareForwardBoxLine className="text-lg" />
             </span>
@@ -44,7 +43,10 @@ export default function Products() {
             const { name, img } = category;
 
             return (
-              <div key={name + img} className={`border md:px-4 px-2 py-2 space-y-2 ${i > 7 && "hidden md:block"}`}>
+              <div
+                key={name + img}
+                className={`border md:px-4 px-2 py-2 space-y-2 ${i > 7 && "hidden md:block"}`}
+              >
                 <Image
                   src={`/img/categories/${img}`}
                   alt={name}
@@ -52,7 +54,9 @@ export default function Products() {
                   height={1000}
                   className="xl:w-20 xl:h-20 w-16 h-16 rounded-full mx-auto"
                 />
-                <h5 className="font-semibold text-center text-sm md:text-base">{name}</h5>
+                <h5 className="font-semibold text-center text-sm md:text-base">
+                  {name}
+                </h5>
               </div>
             );
           })}
@@ -62,47 +66,50 @@ export default function Products() {
       <section>
         <h3 className="font-bold text-2xl mb-6">Corporate</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {shop.filter(product => product.type === "corporate").map((product) => {
-            const { name, desc, price, img, id, type } = product;
+          {shop
+            .filter((product) => product.type === "corporate")
+            .map((product) => {
+              const { name, desc, price, img, id, type } = product;
 
-            return (
-              <Product
-                key={name + img + price}
-                id={id}
-                type={type}
-                name={name}
-                desc={desc}
-                price={price}
-                img={img}
-              />
-            );
-          })}
+              return (
+                <Product
+                  key={name + img + price}
+                  id={id}
+                  type={type}
+                  name={name}
+                  desc={desc}
+                  price={price}
+                  img={img}
+                />
+              );
+            })}
         </div>
       </section>
 
       <section>
         <h3 className="font-bold text-2xl mb-6">Dress</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {shop.filter(product => product.type === "dress").map((product) => {
-            const { name, desc, price, img, id, type } = product;
+          {shop
+            .filter((product) => product.type === "dress")
+            .map((product) => {
+              const { name, desc, price, img, id, type } = product;
 
-            return (
-              <Product
-                key={name + img + price}
-                id={id}
-                type={type}
-                name={name}
-                desc={desc}
-                price={price}
-                img={img}
-              />
-            );
-          })}
+              return (
+                <Product
+                  key={name + img + price}
+                  id={id}
+                  type={type}
+                  name={name}
+                  desc={desc}
+                  price={price}
+                  img={img}
+                />
+              );
+            })}
         </div>
       </section>
 
       <Testimonials />
-      
     </main>
   );
 }

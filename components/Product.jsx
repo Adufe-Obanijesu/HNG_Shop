@@ -10,33 +10,37 @@ import { useContext } from "react";
 import { Context } from "@/pages/_app";
 
 export default function Product({ id, name, desc, price, img, type }) {
-
   const { state, dispatch } = useContext(Context);
 
   const handleAddToCart = (product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: {
-      id,
-      name,
-      desc,
-      price,
-      img,
-      type,
-    } });
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id,
+        name,
+        desc,
+        price,
+        img,
+        type,
+      },
+    });
   };
 
   const handleRemoveFromCart = () => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: {
-      id,
-      name,
-      desc,
-      price,
-      img,
-      type,
-    } });
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        name,
+        desc,
+        price,
+        img,
+        type,
+      },
+    });
   };
 
   return (
-    
     <div className="space-y-2 hover:scale-[1.02] transition-item">
       <Link href={`/products/${id}`}>
         <Image
@@ -75,13 +79,19 @@ export default function Product({ id, name, desc, price, img, type }) {
         </div>
 
         <div className="v-center xl:gap-4 gap-2">
-          <span className="bg-gray-400 transition-item hover:bg-black hv-center xl:h-7 xl:w-7 w-5 h-5 cursor-pointer rounded-full" onClick={handleRemoveFromCart}>
+          <span
+            className="bg-gray-400 transition-item hover:bg-black hv-center xl:h-7 xl:w-7 w-5 h-5 cursor-pointer rounded-full"
+            onClick={handleRemoveFromCart}
+          >
             <FaMinus className="text-white xl:text-sm text-[10px]" />
           </span>
           <span className="text-lg font-bold">
-            {state.cart.find(item => item.id === id)?.qty || 0}
+            {state.cart.find((item) => item.id === id)?.qty || 0}
           </span>
-          <span className="bg-transparent border-2 border-black text-black hover:bg-black hover:text-white transition-item hv-center xl:h-7 xl:w-7 w-5 h-5 cursor-pointer rounded-full" onClick={handleAddToCart}>
+          <span
+            className="bg-transparent border-2 border-black text-black hover:bg-black hover:text-white transition-item hv-center xl:h-7 xl:w-7 w-5 h-5 cursor-pointer rounded-full"
+            onClick={handleAddToCart}
+          >
             <FaPlus className="xl:text-sm text-[10px]" />
           </span>
         </div>

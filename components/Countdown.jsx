@@ -43,7 +43,7 @@ const Countdown = () => {
           {timeLeft.days < 10 && "0"}
           {timeLeft.days}
         </span>
-        
+
         <h6 className="text-white mt-2 text-sm">Days</h6>
       </div>
 
@@ -52,7 +52,7 @@ const Countdown = () => {
           {timeLeft.hours < 10 && "0"}
           {timeLeft.hours}
         </span>
-        
+
         <h6 className="text-white mt-2 text-sm">Hr</h6>
       </div>
 
@@ -61,7 +61,7 @@ const Countdown = () => {
           {timeLeft.minutes < 10 && "0"}
           {timeLeft.minutes}
         </span>
-        
+
         <h6 className="text-white mt-2 text-sm">Mins</h6>
       </div>
 
@@ -70,7 +70,7 @@ const Countdown = () => {
           {timeLeft.seconds < 10 && "0"}
           {timeLeft.seconds}
         </span>
-        
+
         <h6 className="text-white mt-2 text-sm">Sec</h6>
       </div>
     </div>

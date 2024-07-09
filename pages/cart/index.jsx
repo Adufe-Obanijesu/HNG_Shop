@@ -12,16 +12,17 @@ import { Context } from "@/pages/_app";
 import { useContext } from "react";
 
 export default function Cart() {
-
   const { state } = useContext(Context);
 
   const subtotal = state.cart.reduce((total, item) => {
-    return total + (item.price * item.qty)
-  }, 0)
+    return total + item.price * item.qty;
+  }, 0);
 
   return (
     <main>
-      <h2 className="font-bold text-2xl text-center mt-8">Carts ({state.cart.length || 0})</h2>
+      <h2 className="font-bold text-2xl text-center mt-8">
+        Carts ({state.cart.length || 0})
+      </h2>
 
       <div className="md:flex justify-end mt-4 hidden">
         <Link href="/products">
@@ -32,33 +33,33 @@ export default function Cart() {
       </div>
 
       <section className="mt-4">
-
-
         <div className="grid lg:grid-cols-4 gap-4 border-b pb-8">
           <div className="lg:col-span-3 border-t pt-2">
-            
-            {
-              state.cart.length === 0 && <div className="lg:col-span-3 mt-2"><h4 className="font-bold text-xl">No item found. Go shop!!!</h4></div>
-            }
+            {state.cart.length === 0 && (
+              <div className="lg:col-span-3 mt-2">
+                <h4 className="font-bold text-xl">No item found. Go shop!!!</h4>
+              </div>
+            )}
 
-            {state.cart && state.cart.map((item) => {
-              const { id, name, price, qty, img, desc, type } = item;
+            {state.cart &&
+              state.cart.map((item) => {
+                const { id, name, price, qty, img, desc, type } = item;
 
-              return (
-                <CartItem
-                  key={name + price}
-                  id={id}
-                  desc={desc}
-                  name={name}
-                  color="Pink, Blue"
-                  size="M, L"
-                  price={price}
-                  qty={qty}
-                  img={img}
-                  type={type}
-                />
-              );
-            })}
+                return (
+                  <CartItem
+                    key={name + price}
+                    id={id}
+                    desc={desc}
+                    name={name}
+                    color="Pink, Blue"
+                    size="M, L"
+                    price={price}
+                    qty={qty}
+                    img={img}
+                    type={type}
+                  />
+                );
+              })}
           </div>
 
           <div className="flex flex-col gap-8 mt-4 md:w-2/3 lg:w-auto">
@@ -80,7 +81,11 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg text-gray-600" />
-                    <h3 className={`text-gray-600 ${state.cart.length === 0 && "line-through"}`}>10000</h3>
+                    <h3
+                      className={`text-gray-600 ${state.cart.length === 0 && "line-through"}`}
+                    >
+                      10000
+                    </h3>
                   </div>
                 </div>
 
@@ -89,15 +94,19 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg" />
-                    <h3 className={`font-bold ${state.cart.length === 0 && "line-through"}`}>{subtotal + 10000}</h3>
+                    <h3
+                      className={`font-bold ${state.cart.length === 0 && "line-through"}`}
+                    >
+                      {subtotal + 10000}
+                    </h3>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 md:hidden">
-                {
-                  state.cart.length === 0 && <p className="text-red-500 mb-2 text-center">No item found</p>
-                }
+                {state.cart.length === 0 && (
+                  <p className="text-red-500 mb-2 text-center">No item found</p>
+                )}
                 <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
@@ -126,9 +135,9 @@ export default function Cart() {
               </div>
 
               <div className="mt-8 hidden md:block">
-                {
-                  state.cart.length === 0 && <p className="text-red-500 mb-2 text-center">No item found</p>
-                }
+                {state.cart.length === 0 && (
+                  <p className="text-red-500 mb-2 text-center">No item found</p>
+                )}
                 <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
@@ -136,7 +145,6 @@ export default function Cart() {
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -154,10 +162,10 @@ export default function Cart() {
             <span className="font-bold">Free Shipping & Returns:</span>
             <span className="font-medium">
               On all orders over
-                <span className="shrink-0 whitespace-nowrap">
-                    <TbCurrencyNaira className="text-xl mb-[3px] inline" />
-                    <span className="">50,000</span>
-                </span>
+              <span className="shrink-0 whitespace-nowrap">
+                <TbCurrencyNaira className="text-xl mb-[3px] inline" />
+                <span className="">50,000</span>
+              </span>
             </span>
           </p>
 
