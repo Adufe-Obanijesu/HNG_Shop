@@ -92,7 +92,7 @@ export default function Checkout() {
       <section>
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           <div className="space-y-8">
-            <div className="v-center justify-between p-4 bg-blue-50 rounded-md">
+            <div className="v-center justify-between p-4 bg-gray-100 rounded-md">
               <div>
                 <h4 className="font-bold text-lg text-gray-700">
                   Shipping Address
@@ -107,7 +107,7 @@ export default function Checkout() {
               </span>
             </div>
 
-            <div className="v-center justify-between p-4 bg-blue-50 rounded-md">
+            <div className="v-center justify-between p-4 bg-gray-100 rounded-md">
               <div>
                 <h4 className="font-bold text-lg text-gray-700">
                   Contact Information
@@ -145,7 +145,7 @@ export default function Checkout() {
 
           <div className="flex justify-end">
             <div className="w-full xl:w-2/3">
-              <div className="rounded-lg p-4 bg-blue-50 space-y-4">
+              <div className="rounded-lg p-4 bg-gray-100 space-y-4">
                 <div className="flex justify-between">
                   <h4 className="text-lg font-bold">Payment Method</h4>
 
@@ -180,7 +180,7 @@ export default function Checkout() {
 
         <hr className="mb-8 mt-12 hidden md:block" />
 
-        <div className="hidden md:flex justify-end">
+        <div className="hidden md:flex flex-col items-end">
           <div className="v-center gap-8">
             <h4 className="font-semibold text-xl">Total:</h4>
 
@@ -191,9 +191,8 @@ export default function Checkout() {
               </h3>
             </div>
           </div>
-        </div>
 
-        <div className="h-center mt-8">
+          <div className="h-center mt-8">
           <button
             className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto"
             onClick={payment}
@@ -201,6 +200,18 @@ export default function Checkout() {
             Checkout
           </button>
         </div>
+        </div>
+
+        <div className="h-center mt-8 md:hidden">
+          <button
+            className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto"
+            onClick={payment}
+          >
+            Checkout
+          </button>
+        </div>
+
+        
       </section>
 
       <br />

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, memo } from "react";
+import { useEffect, useState, useMemo, memo, useCallback } from "react";
 
 const Countdown = () => {
   const futureDate = useMemo(() => {
@@ -10,7 +10,7 @@ const Countdown = () => {
     return fDate;
   }, []);
 
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = useCallback(() => {
     const difference = futureDate - new Date();
     let timeLeft = {};
 
@@ -24,7 +24,7 @@ const Countdown = () => {
     }
 
     return timeLeft;
-  };
+  }, [futureDate]);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -34,7 +34,7 @@ const Countdown = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [calculateTimeLeft]);
 
   return (
     <div className="flex gap-6 mt-2">

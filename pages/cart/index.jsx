@@ -149,8 +149,8 @@ export default function Cart() {
         </div>
       </section>
 
-      <section className="flex justify-end -mx-4 md:mx-0">
-        <div className="lg:pl-10 lg:w-1/2 md:w-2/3">
+      <section className="-mx-4 md:mx-0">
+        <div className="lg:pl-10">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>
