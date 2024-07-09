@@ -5,7 +5,7 @@ import { FaFacebook } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary xl:p-24 md:py-16 p-8 xl:-mx-16 md:-mx-8 -mx-4">
+    <footer id="contact" className="bg-primary xl:p-24 md:py-16 p-8 xl:-mx-16 md:-mx-8 -mx-4">
       <div className="grid xl:grid-cols-2 md:grid-cols-5 gap-4">
         <div className="md:flex md:col-span-2 xl:col-span-1">
           <div className="flex flex-col items-center">

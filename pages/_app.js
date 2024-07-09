@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Context.Provider value={{ state, dispatch }}>
-      <div className="pt-4 xl:px-16 md:px-8 px-4 bg-[rgba(250,250,250,1)]">
+      <div className="xl:px-16 md:px-8 px-4 bg-[rgba(250,250,250,1)]">
         <Navbar />
         <Component {...pageProps} />
         <Footer />

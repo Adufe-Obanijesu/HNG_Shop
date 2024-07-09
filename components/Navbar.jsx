@@ -18,7 +18,7 @@ export default function Navbar() {
   const [ showSidebar, setShowSidebar ] = useState(false);
 
   return (
-    <nav className="">
+    <nav className="sticky top-0 bg-white xl:-mx-16 xl:px-16 md:-mx-8 md:px-8 -mx-4 px-4 pt-2 z-50">
       <div className="flex justify-between items-center">
         <div className="md:w-[30%] lg:w-[20%] xl:w-[30%]">
           <Link href="/">
@@ -55,7 +55,7 @@ export default function Navbar() {
           <Link href="/products">
             <li>Products</li>
           </Link>
-          <Link href="#">
+          <Link href="#contact">
             <li>Contact Us</li>
           </Link>
           <li>
@@ -74,7 +74,7 @@ export default function Navbar() {
 
         <div className="w-[30%] hidden lg:flex items-center justify-end gap-8 lg:gap-4 xl:gap-8">
           <div className="v-center gap-4">
-            <span>
+            <span className="cursor-pointer">
               <RxCaretDown className="text-2xl" />
             </span>
             <span className="font-bold">Hi Temi</span>
@@ -86,7 +86,9 @@ export default function Navbar() {
               className="h-12 w-12"
             />
           </div>
-          <button className="secondary-button">Log out</button>
+          <Link href="/">
+            <button className="secondary-button">Log out</button>
+          </Link>
         </div>
 
         <div>
@@ -120,7 +122,7 @@ export default function Navbar() {
           <Link onClick={() => setShowSidebar(false)} href="/products">
             <li>Products</li>
           </Link>
-          <Link onClick={() => setShowSidebar(false)} href="#">
+          <Link onClick={() => setShowSidebar(false)} href="#contact">
             <li>Contact Us</li>
           </Link>
           <li className="">
@@ -136,8 +138,10 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-
-        <button className="secondary-button w-full">Log out</button>
+        
+        <Link href="/" onClick={() => setShowSidebar(false)}>
+          <button className="secondary-button w-full">Log out</button>
+        </Link>
       </div>
 
       <div className={`fixed z-20 lg:hidden ${!showSidebar && "hidden"} top-0 left-0 h-screen w-screen bg-blue-500/50 backdrop-blur-sm`} onClick={() => setShowSidebar(false)}></div>

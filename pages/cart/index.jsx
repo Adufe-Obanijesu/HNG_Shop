@@ -80,7 +80,7 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg text-gray-600" />
-                    <h3 className="text-gray-600">10000</h3>
+                    <h3 className={`text-gray-600 ${state.cart.length === 0 && "line-through"}`}>10000</h3>
                   </div>
                 </div>
 
@@ -89,13 +89,16 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg" />
-                    <h3 className="font-bold">{subtotal + 10000}</h3>
+                    <h3 className={`font-bold ${state.cart.length === 0 && "line-through"}`}>{subtotal + 10000}</h3>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 md:hidden">
-                <Link href="/checkout">
+                {
+                  state.cart.length === 0 && <p className="text-red-500 mb-2 text-center">No item found</p>
+                }
+                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>
@@ -123,7 +126,10 @@ export default function Cart() {
               </div>
 
               <div className="mt-8 hidden md:block">
-                <Link href="/checkout">
+                {
+                  state.cart.length === 0 && <p className="text-red-500 mb-2 text-center">No item found</p>
+                }
+                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>

@@ -158,7 +158,7 @@ export default function Checkout() {
                     alt="card"
                     width={1000}
                     height={1000}
-                    className="w-full md:w-[85%] lg:w-full h-auto"
+                    className="w-full md:w-[85%] max-w-[85%] lg:w-full h-auto"
                   />
 
                   <div>

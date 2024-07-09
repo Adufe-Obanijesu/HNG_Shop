@@ -39,7 +39,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <button className="btn">Shop Now</button>
+              <div>
+                <Link href="/products">
+                  <button className="btn">Shop Now</button>
+                </Link>
+              </div>
 
               <div className="flex flex-col items-center">
                 <h6 className="mb-2">Hurry Before It&apos;s Too Late!</h6>

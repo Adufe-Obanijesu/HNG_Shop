@@ -22,6 +22,7 @@ export default function Product({productId}) {
   const product = shop[Number(productId) - 1];
 
   const [ activeColor, setActiveColor ] = useState(0);
+  const [ activeSize, setActiveSize ] = useState("S");
   const [ tab, setTab ] = useState("descriptions");
 
   const productDetails = shop.filter(item => item.type === product.type);
@@ -193,17 +194,17 @@ export default function Product({productId}) {
                 <h5 className="font-semibold">Size</h5>
 
                 <div className="mt-2 flex items-center gap-4">
-                  <span className="border rounded px-4 py-2 font-semibold">
+                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "S" && "bg-primary text-white"}`} onClick={() => setActiveSize("S")}>
                     S
                   </span>
-                  <span className="border rounded px-4 py-2 font-semibold">
+                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "M" && "bg-primary text-white"}`} onClick={() => setActiveSize("M")}>
                     M
                   </span>
-                  <span className="border rounded px-4 py-2 font-semibold bg-primary text-white">
+                  <span className={`border cursor-pointer rounded px-4 py-2 font-semibold ${activeSize === "L" && "bg-primary text-white"}`} onClick={() => setActiveSize("L")}>
                     L
                   </span>
 
-                  <span className="border rounded px-2.5 py-2 font-semibold">
+                  <span className={`border cursor-pointer rounded px-2.5 py-2 font-semibold ${activeSize === "XL" && "bg-primary text-white"}`} onClick={() => setActiveSize("XL")}>
                     XL
                   </span>
 

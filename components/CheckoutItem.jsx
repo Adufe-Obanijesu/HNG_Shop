@@ -5,8 +5,9 @@ import { TbCurrencyNaira } from "react-icons/tb";
 
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
+import Link from "next/link";
 
-export default function CheckoutItem({ name, color, size, img, qty, price }) {
+export default function CheckoutItem({ id, desc, type, name, color, size, img, qty, price }) {
   
   const { state, dispatch } = useContext(Context);
 
@@ -41,6 +42,7 @@ export default function CheckoutItem({ name, color, size, img, qty, price }) {
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-12 grid-cols-3 mt-4">
       <div className="col-span-2 lg:col-span-1 md:col-span-4 grid grid-cols-2 gap-2">
+      <Link href={`/products/${id}`}>
         <Image
           src={img}
           width={1000}
@@ -48,6 +50,7 @@ export default function CheckoutItem({ name, color, size, img, qty, price }) {
           alt={name}
           className="h-full w-full object-top rounded-md object-cover"
         />
+        </Link>
         <div>
           <h4 className="font-bold text-xl text-gray-800">{name}</h4>
           <div className="mt-2 text-gray-600">

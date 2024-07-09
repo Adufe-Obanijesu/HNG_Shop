@@ -12,6 +12,10 @@
   src: url("../public/fonts/digital-numbers/digital-numbers.ttf");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   @apply font-inter;
 }

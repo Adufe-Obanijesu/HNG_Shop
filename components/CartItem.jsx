@@ -5,6 +5,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
+import Link from "next/link";
 
 export default function CartItem({ id, name, color, size, img, qty, price, type, desc }) {
 
@@ -42,13 +43,15 @@ export default function CartItem({ id, name, color, size, img, qty, price, type,
     <div className="grid grid-cols-3 md:grid-cols-6 xl:grid-cols-3 md:mt-4 mt-6">
       <div className="grid col-span-2 md:col-span-3 xl:col-span-1 grid-cols-2 gap-2 md:gap-4">
         <div>
-          <Image
-            src={img}
-            width={1000}
-            height={1000}
-            alt={name}
-            className="h-full w-full object-top rounded-md object-cover"
-          />
+          <Link href={`/products/${id}`}>
+            <Image
+              src={img}
+              width={1000}
+              height={1000}
+              alt={name}
+              className="h-full w-full object-top rounded-md object-cover"
+            />
+          </Link>
         </div>
         <div className="pt-4">
           <h4 className="font-bold text-xl text-gray-800">{name}</h4>
