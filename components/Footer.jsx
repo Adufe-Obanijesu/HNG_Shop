@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { FiInstagram } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -12,13 +13,15 @@ export default function Footer() {
       <div className="grid xl:grid-cols-2 md:grid-cols-5 gap-4">
         <div className="md:flex md:col-span-2 xl:col-span-1">
           <div className="flex flex-col items-center">
-            <Image
-              src="/logo-white.png"
-              alt="logo"
-              width={1000}
-              height={1000}
-              className="h-24 w-auto"
-            />
+            <Link href="/">
+              <Image
+                src="/logo-white.png"
+                alt="logo"
+                width={1000}
+                height={1000}
+                className="h-24 w-auto"
+              />
+            </Link>
             <div>
               <button className="btn btn-white md:text-sm xl:text-base">
                 Download App on IOS & Android

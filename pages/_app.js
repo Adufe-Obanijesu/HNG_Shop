@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
@@ -8,6 +8,13 @@ export const Context = createContext();
 
 export default function App({ Component, pageProps }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('hng_arries_cart');
+    if (storedCart) {
+      dispatch({ type: 'INITIALIZE_CART', payload: JSON.parse(storedCart) });
+    }
+  }, []);
 
   return (
     <Context.Provider value={{ state, dispatch }}>

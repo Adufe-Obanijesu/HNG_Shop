@@ -31,6 +31,7 @@ export default function Checkout() {
 
   const reset = () => {
     setPay("pending");
+    localStorage.removeItem('hng_arries_cart')
     router.push("/products");
   };
 
