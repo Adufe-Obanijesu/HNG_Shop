@@ -84,7 +84,7 @@ export default function Product({ productId }) {
             {productDetails.map((product) => {
               return (
                 <div
-                  className="p-1 cursor-pointer hover:border-2 border-primary"
+                  className={`p-1 cursor-pointer hover:border border-primary ${product.id == productId && "border-2 border-primary"}`}
                   key={product.img}
                 >
                   <Image
