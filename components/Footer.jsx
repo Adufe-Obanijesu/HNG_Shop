@@ -75,7 +75,7 @@ export default function Footer() {
 
               <li>
                 <div className="flex gap-4">
-                  <FiInstagram className="text-3xl text-red-500" />
+                  <FiInstagram className="text-3xl text-white" />
                   <FaFacebook className="text-3xl text-white" />
                 </div>
               </li>
