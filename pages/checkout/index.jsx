@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { formatNumberWithCommas } from "@/utils/functions";
 import { Email, TextInput } from "@/components/Input";
+import axios from "axios";
 
 export default function Checkout() {
   const router = useRouter();
@@ -25,20 +26,79 @@ export default function Checkout() {
     }
 
     setCheckoutData(newData);
-}
+  }
 
+  const handlePayment = (e) => {
+
+    
+    if (e.target.name === "cvv") {
+      const allowedPattern = /^[\d ]*$/;
+      if(!allowedPattern.test(e.target.value)) return;
+      if (e.target.value.length > 3) return;
+    }
+    
+    if (e.target.name === "expDate") {
+      if (e.target.value.length > 5) return;
+      const allowedPattern = /^[\d/ ]*$/;
+      if(!allowedPattern.test(e.target.value)) return;
+      if (e.target.value.length === 2 && checkoutData.expDate.length <= e.target.value.length) {
+        if (e.target.value[e.target.value.length-1] == "/") {
+          e.target.value = "0" + e.target.value.slice(0,1);
+        }
+        if (Number(e.target.value) > 12) e.target.value = 12;
+        e.target.value += "/";
+      }
+      
+    }
+    
+    const newData = {
+        ...checkoutData,
+        [e.target.name]: e.target.value
+    }
+
+    setCheckoutData(newData);
+  }
+  
   const { state, dispatch } = useContext(Context);
 
   const subtotal = state.cart.reduce((total, item) => {
     return total + item.current_price * item.qty;
   }, 0);
-
+  
   const [pay, setPay] = useState("pending");
+  
+  const payment = async e => {
+    e.preventDefault();
 
-  const payment = () => {
     setPay("inProgress");
-    dispatch({ type: "CLEAR" });
-    setTimeout(() => setPay("successful"), 2000);
+    
+    const { fname, lname, email, phone } = checkoutData
+    const data = {
+      organization_id: process.env.NEXT_PUBLIC_ORG_ID,
+      Appid: process.env.NEXT_PUBLIC_APP_ID,
+      Apikey: process.env.NEXT_PUBLIC_API_KEY,
+      first_name: fname,
+      last_name: lname,
+      email,
+      phone,
+      mode_of_payment: "Card"
+
+    }
+
+    try {
+      const response = await axios.post(process.env.NEXT_PUBLIC_BASE_URL + "/sales", data, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      
+      console.log(response)
+      dispatch({ type: "CLEAR" });
+      setPay("successful");
+    } catch(err) {
+      console.log(err);
+    }
+
   };
 
   const reset = () => {
@@ -94,7 +154,7 @@ export default function Checkout() {
         </div>
       </section>
 
-      <div className="flex justify-end">
+      <div className="flex items-end flex-col">
         <div className="border-b py-2 flex justify-end">
           <div className="text-lg text-red-500 font-semibold">
             Shipping Fee
@@ -106,6 +166,16 @@ export default function Checkout() {
               className={`font-bold ${state.cart.length === 0 && "line-through"}`}
             >
               10,000
+            </h3>
+          </div>
+        </div>
+        <div className="v-center gap-8 mt-2">
+          <h4 className="font-semibold text-xl">Total:</h4>
+
+          <div className="v-center ml-10">
+            <TbCurrencyNaira className="text-xl text-primary" />
+            <h3 className="font-bold text-primary">
+              {state.cart.length === 0 ? 0 : formatNumberWithCommas(subtotal + 10000)}
             </h3>
           </div>
         </div>
@@ -222,18 +292,41 @@ export default function Checkout() {
       </section> */}
 
       <section>
-        <form>
+        <h3 className="font-bold text-2xl mb-8 text-center">Billing Details</h3>
+        <form onSubmit={payment}>
           <div className="grid md:grid-cols-2 gap-4 md:gap-8">
             <div>
-              <TextInput name="name" label="Full Name" placeholder="John Doe" value={checkoutData.name} setData={handleInput} />
+              <TextInput name="fname" label="Full Name" placeholder="John" value={checkoutData.fname} setData={handleInput} />
+              <TextInput name="lname" label="Last Name" placeholder="Doe" value={checkoutData.lname} setData={handleInput} />
               <Email name="email" label="Full Name" placeholder="johndoe@gmail.com" value={checkoutData.email} setData={handleInput} />
               <TextInput name="phone" label="Phone Number" placeholder="0800 000 0000" value={checkoutData.phone} setData={handleInput} />
               <TextInput name="address" label="Street Address" placeholder="No 10, Street, State" value={checkoutData.address} setData={handleInput} />
+            </div>
+
+            <div>
+              
               <TextInput name="city" label="City" placeholder="e.g Akure" value={checkoutData.city} setData={handleInput} />
               <TextInput name="state" label="State" placeholder="e.g Ondo" value={checkoutData.state} setData={handleInput} />
               <TextInput name="zipCode" label="Zip Code" placeholder="e.g 19007" value={checkoutData.zipCode} setData={handleInput} />
               <TextInput name="country" label="Country" placeholder="e.g Nigeria" value={checkoutData.country} setData={handleInput} />
             </div>
+
+          </div>
+
+
+          <div className="md:w-1/2 w-full mt-8">
+            <h3 className="font-bold text-2xl mb-4">Payment</h3>
+            <div>
+              <TextInput name="cardNumber" label="Card Number" placeholder="e.g 5599 **** **** ****" value={checkoutData.cardNumber} setData={handleInput} />
+              <div className="grid grid-cols-2 gap-4">
+                <TextInput name="cvv" label="CVV" placeholder="***" value={checkoutData.cvv} setData={handlePayment} />
+                <TextInput name="expDate" label="Expiry Date" placeholder="**/**" value={checkoutData.expDate} setData={handlePayment} />
+              </div>
+            </div>
+
+            <button className="btn border-2 border-primary w-full">
+              Checkout
+            </button>
           </div>
         </form>
       </section>
