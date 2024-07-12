@@ -11,14 +11,26 @@ import { Context } from "@/pages/_app";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { formatNumberWithCommas } from "@/utils/functions";
+import { Email, TextInput } from "@/components/Input";
 
 export default function Checkout() {
   const router = useRouter();
 
+  const [ checkoutData, setCheckoutData ] = useState({});
+
+  const handleInput = (e) => {
+    const newData = {
+        ...checkoutData,
+        [e.target.name]: e.target.value
+    }
+
+    setCheckoutData(newData);
+}
+
   const { state, dispatch } = useContext(Context);
 
   const subtotal = state.cart.reduce((total, item) => {
-    return total + item.price * item.qty;
+    return total + item.current_price * item.qty;
   }, 0);
 
   const [pay, setPay] = useState("pending");
@@ -71,27 +83,35 @@ export default function Checkout() {
 
           {state.cart &&
             state.cart.map((item) => {
-              const { id, name, price, qty, img, desc, type } = item;
 
               return (
                 <CheckoutItem
-                  key={name + price}
-                  id={id}
-                  desc={desc}
-                  name={name}
-                  color="Pink, Blue"
-                  size="M, L"
-                  price={price}
-                  qty={qty}
-                  img={img}
-                  type={type}
+                  key={item.id}
+                  product={item}
                 />
               );
             })}
         </div>
       </section>
 
-      <section>
+      <div className="flex justify-end">
+        <div className="border-b py-2 flex justify-end">
+          <div className="text-lg text-red-500 font-semibold">
+            Shipping Fee
+          </div>
+
+          <div className="v-center ml-10">
+            <TbCurrencyNaira className="text-xl" />
+            <h3
+              className={`font-bold ${state.cart.length === 0 && "line-through"}`}
+            >
+              10,000
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      {/* <section>
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           <div className="space-y-8">
             <div className="v-center justify-between p-4 bg-gray-100 rounded-md">
@@ -127,22 +147,7 @@ export default function Checkout() {
               </span>
             </div>
 
-            <div className="flex justify-end">
-              <div className="border-y py-2 flex justify-end">
-                <div className="text-lg text-red-500 font-semibold">
-                  Shipping Fee
-                </div>
-
-                <div className="v-center ml-10">
-                  <TbCurrencyNaira className="text-xl" />
-                  <h3
-                    className={`font-bold ${state.cart.length === 0 && "line-through"}`}
-                  >
-                    10,000
-                  </h3>
-                </div>
-              </div>
-            </div>
+            
           </div>
 
           <div className="flex justify-end">
@@ -214,6 +219,23 @@ export default function Checkout() {
         </div>
 
         
+      </section> */}
+
+      <section>
+        <form>
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
+            <div>
+              <TextInput name="name" label="Full Name" placeholder="John Doe" value={checkoutData.name} setData={handleInput} />
+              <Email name="email" label="Full Name" placeholder="johndoe@gmail.com" value={checkoutData.email} setData={handleInput} />
+              <TextInput name="phone" label="Phone Number" placeholder="0800 000 0000" value={checkoutData.phone} setData={handleInput} />
+              <TextInput name="address" label="Street Address" placeholder="No 10, Street, State" value={checkoutData.address} setData={handleInput} />
+              <TextInput name="city" label="City" placeholder="e.g Akure" value={checkoutData.city} setData={handleInput} />
+              <TextInput name="state" label="State" placeholder="e.g Ondo" value={checkoutData.state} setData={handleInput} />
+              <TextInput name="zipCode" label="Zip Code" placeholder="e.g 19007" value={checkoutData.zipCode} setData={handleInput} />
+              <TextInput name="country" label="Country" placeholder="e.g Nigeria" value={checkoutData.country} setData={handleInput} />
+            </div>
+          </div>
+        </form>
       </section>
 
       <br />

@@ -1,12 +1,19 @@
 import { FiSearch } from "react-icons/fi";
 import { RiShareForwardBoxLine } from "react-icons/ri";
 import { PiHeartBold } from "react-icons/pi";
-import { shop, categories } from "@/data";
+import { categories } from "@/data";
 import Image from "next/image";
 import Product from "@/components/Product";
 import Testimonials from "@/components/testimonials/Testimonials";
+import { fetchProduct } from "@/utils/functions";
+import Pagination from "@/components/Pagination";
+import { useRouter } from "next/router";
 
-export default function Products() {
+export default function Products({ products, total }) {
+
+  const router = useRouter();
+  const { page } = router.query;
+
   return (
     <main id="product-page">
       <section className="mt-8">
@@ -64,52 +71,51 @@ export default function Products() {
       </section>
 
       <section>
-        <h3 className="font-bold text-2xl mb-6">Corporate</h3>
+        <h3 className="font-bold text-2xl mb-6">Our Products</h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {shop
-            .filter((product) => product.type === "corporate")
-            .map((product) => {
-              const { name, desc, price, img, id, type } = product;
+          {
+              products.map((product) => {
 
-              return (
+                return (
                 <Product
-                  key={name + img + price}
-                  id={id}
-                  type={type}
-                  name={name}
-                  desc={desc}
-                  price={price}
-                  img={img}
+                    key={product.id}
+                    product={product}
                 />
-              );
-            })}
-        </div>
-      </section>
+                );
+            })
+          }
 
-      <section>
-        <h3 className="font-bold text-2xl mb-6">Dress</h3>
-        <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {shop
-            .filter((product) => product.type === "dress")
-            .map((product) => {
-              const { name, desc, price, img, id, type } = product;
-
-              return (
-                <Product
-                  key={name + img + price}
-                  id={id}
-                  type={type}
-                  name={name}
-                  desc={desc}
-                  price={price}
-                  img={img}
-                />
-              );
-            })}
         </div>
+        
+        <Pagination total={total} page={page || 1} />
+
       </section>
 
       <Testimonials />
     </main>
   );
+}
+
+export async function getServerSideProps(ctx) {
+
+  const { query } = ctx;
+  const { page } = query;  
+
+  let response;
+  
+  try {
+    response = await fetchProduct("/products", {
+      size: 12,
+      page: page || 1,
+    })
+  } catch(err) {
+    console.log(err);
+  }
+  
+  return {
+    props: {
+      products: response.data.items || [],
+      total: response.data.total || 0,
+    }
+  }
 }

@@ -16,7 +16,7 @@ export default function Cart() {
   const { state } = useContext(Context);
 
   const subtotal = state.cart.reduce((total, item) => {
-    return total + item.price * item.qty;
+    return total + item.current_price * item.qty;
   }, 0);
 
   return (
@@ -44,20 +44,11 @@ export default function Cart() {
 
             {state.cart &&
               state.cart.map((item) => {
-                const { id, name, price, qty, img, desc, type } = item;
 
                 return (
                   <CartItem
-                    key={name + price}
-                    id={id}
-                    desc={desc}
-                    name={name}
-                    color="Pink, Blue"
-                    size="M, L"
-                    price={price}
-                    qty={qty}
-                    img={img}
-                    type={type}
+                    key={item.id}
+                    product={item}
                   />
                 );
               })}
@@ -108,7 +99,11 @@ export default function Cart() {
                 {state.cart.length === 0 && (
                   <p className="text-red-500 mb-2 text-center">No item found</p>
                 )}
-                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
+                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`} onClick={() => {
+                  if (state.cart.length === 0) {
+                    alert("No product added");
+                  }
+                  }}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>
@@ -139,7 +134,11 @@ export default function Cart() {
                 {state.cart.length === 0 && (
                   <p className="text-red-500 mb-2 text-center">No item found</p>
                 )}
-                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`}>
+                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`} onClick={() => {
+                  if (state.cart.length === 0) {
+                    alert("No product added");
+                  }
+                }}>
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>
