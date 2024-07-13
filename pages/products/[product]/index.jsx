@@ -1,6 +1,6 @@
 import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
 import { PiHeartBold, PiPackage } from "react-icons/pi";
@@ -12,33 +12,25 @@ import { useRouter } from "next/router";
 
 import { useContext } from "react";
 import { Context } from "@/pages/_app";
-import { formatNumberWithCommas } from "@/utils/functions";
+import { fetchProduct, formatNumberWithCommas } from "@/utils/functions";
 
-export default function Product({ productId }) {
+export default function Product({ product }) {
   const router = useRouter();
 
   const { state, dispatch } = useContext(Context);
 
-  const product = shop[Number(productId) - 1];
-
-  const [activeColor, setActiveColor] = useState(0);
+  const [activeColor, setActiveColor] = useState("Gray");
   const [activeSize, setActiveSize] = useState("S");
   const [tab, setTab] = useState("descriptions");
+  const [image, setImage] = useState(0);
 
-  const productDetails = shop.filter((item) => item.type === product.type);
-
-  const { id, name, desc, price, img, type } = product;
-
-  const handleAddToCart = (product) => {
+  const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-        id,
-        name,
-        desc,
-        price,
-        img,
-        type,
+        ...product,
+        color: activeColor,
+        size: activeSize,
       },
     });
   };
@@ -47,12 +39,9 @@ export default function Product({ productId }) {
     dispatch({
       type: "REMOVE_FROM_CART",
       payload: {
-        id,
-        name,
-        desc,
-        price,
-        img,
-        type,
+        ...product,
+        color: activeColor,
+        size: activeSize,
       },
     });
   };
@@ -81,22 +70,19 @@ export default function Product({ productId }) {
 
       <section className="-mx-4 md:mx-0 mt-4">
         <div className="flex gap-4">
-          <div className="flex-col justify-between shrink-0 hidden lg:flex mx-4 md:mx-0">
-            {productDetails.map((product) => {
+          <div className="flex-col gap-4 shrink-0 hidden lg:flex mx-4 md:mx-0">
+            {product.photos.map((img, i) => {
               return (
                 <div
-                  className={`p-1 cursor-pointer hover:border border-primary ${product.id == productId && "border-2 border-primary"}`}
-                  key={product.img}
+                  className={`p-1 cursor-pointer border-2 ${image === i ? "border-primary" : "border-transparent hover:border-primary"}`}
+                  key={img.url} onClick={() => setImage(i)}
                 >
                   <Image
-                    src={product.img}
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img.url}`}
                     alt="dress"
                     width={1000}
                     height={1000}
                     className="w-16 h-14 object-cover"
-                    onClick={() => {
-                      router.push(`/products/${product.id}`);
-                    }}
                   />
                 </div>
               );
@@ -107,9 +93,9 @@ export default function Product({ productId }) {
             <div>
               <div className="md:h-full h-80 w-full relative">
                 <Image
-                  src={product.img}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${product.photos[image].url}`}
                   fill
-                  alt="corporate dress"
+                  alt={product.name}
                   className="h-full w-full object-cover object-top"
                 />
               </div>
@@ -137,24 +123,18 @@ export default function Product({ productId }) {
                 <div className="v-center mt-4">
                   <TbCurrencyNaira className="text-2xl text-primary" />
                   <h3 className="font-bold text-primary md:text-xl text-lg">
-                    {formatNumberWithCommas(product.price)}
+                    {formatNumberWithCommas(Number(product?.current_price))}
                   </h3>
                 </div>
               </div>
 
               <div className="mt-4">
-                <ul className="w-full flex justify-between">
+                <ul className="w-full flex gap-6">
                   <li
                     className={`${tab === "descriptions" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
                     onClick={() => setTab("descriptions")}
                   >
                     Descriptions
-                  </li>
-                  <li
-                    className={`${tab === "specifications" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
-                    onClick={() => setTab("specifications")}
-                  >
-                    Specifications
                   </li>
                   <li
                     className={`${tab === "details" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
@@ -167,14 +147,7 @@ export default function Product({ productId }) {
                 <p className="text-gray-600 mt-2 w-full">
                   {tab === "descriptions" && (
                     <span>
-                      {product.name} - {product.desc}
-                    </span>
-                  )}
-
-                  {tab === "specifications" && (
-                    <span>
-                      Specifications Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit.
+                      {product.description}
                     </span>
                   )}
 
@@ -193,42 +166,42 @@ export default function Product({ productId }) {
                 <div className="mt-2 flex gap-4">
                   <div
                     className="w-8 h-8 shrink-0 rounded-full bg-gray-500 hv-center cursor-pointer"
-                    onClick={() => setActiveColor(0)}
+                    onClick={() => setActiveColor("Gray")}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full bg-gray-500 ${activeColor === 0 && "border-2"} border-gray-100`}
+                      className={`h-7 w-7 rounded-full bg-gray-500 ${activeColor === "Gray" && "border-2"} border-gray-100`}
                     ></div>
                   </div>
                   <div
                     className="w-8 h-8 shrink-0 rounded-full bg-black hv-center cursor-pointer"
-                    onClick={() => setActiveColor(1)}
+                    onClick={() => setActiveColor("Black")}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full bg-black ${activeColor === 1 && "border-2"} border-gray-100`}
+                      className={`h-7 w-7 rounded-full bg-black ${activeColor === "Black" && "border-2"} border-gray-100`}
                     ></div>
                   </div>
                   <div
                     className="w-8 h-8 shrink-0 rounded-full bg-yellow-500 hv-center cursor-pointer"
-                    onClick={() => setActiveColor(2)}
+                    onClick={() => setActiveColor("Yellow")}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full bg-yellow-500 ${activeColor === 2 && "border-2"} border-gray-100`}
+                      className={`h-7 w-7 rounded-full bg-yellow-500 ${activeColor === "Yellow" && "border-2"} border-gray-100`}
                     ></div>
                   </div>
                   <div
                     className="w-8 h-8 shrink-0 rounded-full bg-red-500 hv-center cursor-pointer"
-                    onClick={() => setActiveColor(3)}
+                    onClick={() => setActiveColor("Red")}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full bg-red-500 ${activeColor === 3 && "border-2"} border-gray-100`}
+                      className={`h-7 w-7 rounded-full bg-red-500 ${activeColor === "Red" && "border-2"} border-gray-100`}
                     ></div>
                   </div>
                   <div
                     className="w-8 h-8 shrink-0 rounded-full bg-purple-500 hv-center cursor-pointer"
-                    onClick={() => setActiveColor(4)}
+                    onClick={() => setActiveColor("Purple")}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full bg-purple-500 ${activeColor === 4 && "border-2"} border-gray-100`}
+                      className={`h-7 w-7 rounded-full bg-purple-500 ${activeColor === "Purple" && "border-2"} border-gray-100`}
                     ></div>
                   </div>
                 </div>
@@ -271,32 +244,38 @@ export default function Product({ productId }) {
               </div>
 
               <div className="mt-4">
-                <h5 className="font-bold hidden md:block">Quantity</h5>
+                {
+                  state.cart.find((item) => item.id === product.id) ? (
+                    <>
+                      <h5 className="font-bold hidden md:block">Quantity</h5>
 
-                <div className="mt-8 md:mt-4 flex flex-wrap justify-center md:justify-normal gap-8">
-                  <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
-                    <span
-                      className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full"
-                      onClick={handleRemoveFromCart}
-                    >
-                      <FaMinus className="text-white text-sm" />
-                    </span>
-                    <span className="text-gray-400 font-medium text-sm">
-                      {state.cart.find((item) => item.id === product.id)?.qty ||
-                        0}
-                    </span>
-                    <span
-                      className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
-                      onClick={handleAddToCart}
-                    >
-                      <FaPlus className="text-white text-sm" />
-                    </span>
-                  </div>
-
-                  <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto">
-                    Add to Cart
-                  </button>
-                </div>
+                      <div className="mt-8 md:mt-4 flex">
+                        <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
+                          <span
+                            className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full"
+                            onClick={handleRemoveFromCart}
+                          >
+                            <FaMinus className="text-white text-sm" />
+                          </span>
+                          <span className="text-gray-400 font-medium text-sm">
+                            {state.cart.find((item) => item.id === product.id)?.qty ||
+                              0}
+                          </span>
+                          <span
+                            className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
+                            onClick={handleAddToCart}
+                          >
+                            <FaPlus className="text-white text-sm" />
+                          </span>
+                        </div>                        
+                      </div>
+                    </>
+                  ) : (
+                    <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto" onClick={handleAddToCart}>
+                      Add to Cart
+                    </button>
+                  )
+                }
               </div>
             </div>
           </div>
@@ -349,10 +328,19 @@ export default function Product({ productId }) {
 }
 
 export async function getServerSideProps(ctx) {
-  const { product: productId } = ctx.query;
+  const { product } = ctx.params;
+
+  let response;
+
+  try {
+    response = await fetchProduct(`/products/${product}`);
+  } catch(err) {
+    console.log(err);
+  }
+
   return {
     props: {
-      productId,
+      product: response.data || null,
     },
   };
 }

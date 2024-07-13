@@ -9,43 +9,21 @@ import Link from "next/link";
 import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function CartItem({
-  id,
-  name,
-  color,
-  size,
-  img,
-  qty,
-  price,
-  type,
-  desc,
+  product
 }) {
-  const { state, dispatch } = useContext(Context);
+  const { dispatch } = useContext(Context);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: {
-        id,
-        name,
-        desc,
-        price,
-        img,
-        type,
-      },
+      payload: product,
     });
   };
 
   const handleRemoveFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-      payload: {
-        id,
-        name,
-        desc,
-        price,
-        img,
-        type,
-      },
+      payload: product,
     });
   };
 
@@ -53,7 +31,7 @@ export default function CartItem({
     dispatch({
       type: "DELETE",
       payload: {
-        id,
+        id: product.id,
       },
     });
   };
@@ -62,21 +40,21 @@ export default function CartItem({
     <div className="grid grid-cols-3 md:grid-cols-6 xl:grid-cols-3 md:mt-4 mt-6">
       <div className="grid col-span-2 md:col-span-3 xl:col-span-1 grid-cols-2 gap-2 md:gap-4">
         <div>
-          <Link href={`/products/${id}`}>
+          <Link href={`/products/${product.id}`}>
             <Image
-              src={img}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${product.photos[0].url}`}
               width={1000}
               height={1000}
-              alt={name}
+              alt={product.name}
               className="h-full w-full object-top rounded-md object-cover"
             />
           </Link>
         </div>
         <div className="pt-4">
-          <h4 className="font-bold text-xl text-gray-800">{name}</h4>
+          <h4 className="font-bold text-xl text-gray-800">{product.name}</h4>
           <div className="mt-4 text-gray-600">
-            <p>Color: {color}</p>
-            <p>Size: {size}</p>
+            <p>Color: {product.color}</p>
+            <p>Size: {product.size}</p>
           </div>
 
           <div className="mt-4 flex gap-2">
@@ -98,7 +76,7 @@ export default function CartItem({
         <div className="flex md:block flex-col justify-between items-end">
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{formatNumberWithCommas(price * qty)}</h3>
+            <h3 className="font-bold">{formatNumberWithCommas(Number(product?.current_price))}</h3>
           </div>
 
           <div className="px-4 py-2 rounded-lg border-2 border-primary v-center gap-3 md:hidden">
@@ -108,7 +86,7 @@ export default function CartItem({
             >
               <FaMinus className="text-white text-[10px]" />
             </span>
-            <span className="text-gray-400 font-medium text-sm">{qty}</span>
+            <span className="text-gray-400 font-medium text-sm">{product.qty}</span>
             <span
               className="bg-primary hv-center h-5 w-5 cursor-pointer rounded-full"
               onClick={handleAddToCart}
@@ -128,7 +106,7 @@ export default function CartItem({
             >
               <FaMinus className="text-white text-sm" />
             </span>
-            <span className="text-gray-400 font-medium text-sm">{qty}</span>
+            <span className="text-gray-400 font-medium text-sm">{product.qty}</span>
             <span
               className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
               onClick={handleAddToCart}

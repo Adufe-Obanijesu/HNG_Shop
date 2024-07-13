@@ -1,21 +1,11 @@
 import Product from "@/components/Product";
 import Testimonials from "@/components/testimonials/Testimonials";
 import Image from "next/image";
-import { useContext } from "react";
-
-import { Context } from "@/pages/_app";
-
-import { shop } from "@/data";
 import Countdown from "@/components/Countdown";
 import Link from "next/link";
+import { fetchProduct } from "@/utils/functions";
 
-export default function Home() {
-  const corporate = shop
-    .filter((product) => product.type === "corporate")
-    .slice(0, 4);
-  const dress = shop.filter((product) => product.type === "dress").slice(0, 4);
-
-  const { state } = useContext(Context);
+export default function Home({ products }) {
 
   return (
     <main>
@@ -136,42 +126,24 @@ export default function Home() {
           Popular Products
         </h3>
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {corporate.map((product) => {
-            const { name, desc, price, img, id, type } = product;
+          
+          {
+            products.map((product) => {
 
-            return (
+              return (
               <Product
-                key={name + img + price}
-                id={id}
-                type={type}
-                name={name}
-                desc={desc}
-                price={price}
-                img={img}
+                  key={product.id}
+                  product={product}
               />
-            );
-          })}
+              );
+          })
+          }
 
-          {dress.map((product) => {
-            const { name, desc, price, img, id, type } = product;
-
-            return (
-              <Product
-                key={name + img + price}
-                id={id}
-                type={type}
-                name={name}
-                desc={desc}
-                price={price}
-                img={img}
-              />
-            );
-          })}
         </div>
 
         <div className="flex justify-end mt-8">
           <Link href="/products">
-            <button className="secondary-button">View more</button>
+            <button className="secondary-button">View all</button>
           </Link>
         </div>
       </section>
@@ -183,4 +155,24 @@ export default function Home() {
       <br />
     </main>
   );
+}
+
+export async function getServerSideProps() {
+
+  let response;
+
+  try {
+    response = await fetchProduct("/products", {
+      category_id: process.env.POPULAR_ID,
+      size: 12,
+    })
+  } catch(err) {
+    console.log(err);
+  }
+
+  return {
+    props: {
+      products: response.data.items || [],
+    }
+  }
 }
