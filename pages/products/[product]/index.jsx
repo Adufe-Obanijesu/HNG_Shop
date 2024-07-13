@@ -79,15 +79,15 @@ export default function Product({ product }) {
       <section className="-mx-4 md:mx-0 mt-4">
         <div className="flex gap-4">
           <div className="flex-col gap-4 shrink-0 hidden lg:flex mx-4 md:mx-0">
-            {product.photos.map((img, i) => {
+            {product.photos && product.photos.map((img, i) => {
               return (
                 <div
                   className={`p-1 cursor-pointer border-2 ${image === i ? "border-primary" : "border-transparent hover:border-primary"}`}
-                  key={img.url}
+                  key={img?.url}
                   onClick={() => setImage(i)}
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img.url}`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img?.url}`}
                     alt="dress"
                     width={1000}
                     height={1000}
@@ -105,6 +105,7 @@ export default function Product({ product }) {
                   src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${product.photos[image].url}`}
                   fill
                   alt={product.name}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="h-full w-full object-cover object-top"
                 />
               </div>
@@ -273,7 +274,7 @@ export default function Product({ product }) {
       </section>
 
       <section className="flex justify-end -mx-4 md:mx-0">
-        <div className="lg:col-start-2 lg:pl-10 xl:w-1/2">
+        <div className="lg:col-start-2 lg:pl-10 w-full lg:w-auto xl:w-1/2">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>
@@ -323,7 +324,7 @@ export async function getServerSideProps(ctx) {
   let response;
 
   try {
-    response = await fetchProduct(`/products/${product}`);
+    response = await fetchProduct(`https://timbu-get-single-product.reavdev.workers.dev/${product}`);
   } catch (err) {
     console.log(err);
   }

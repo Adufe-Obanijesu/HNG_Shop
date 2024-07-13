@@ -6,13 +6,6 @@ import { testimonies } from "@/data";
 
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 
-const styles = [
-  "-translate-x-[100%]",
-  "-translate-x-[200%]",
-  "lg:-translate-x-[40%]",
-  "lg:-translate-x-[80%]",
-];
-
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transformStyle, setTransformStyle] = useState("");

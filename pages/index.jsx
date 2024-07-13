@@ -159,7 +159,7 @@ export async function getServerSideProps() {
   let response;
 
   try {
-    response = await fetchProduct("/products", {
+    response = await fetchProduct("https://timbu-get-all-products.reavdev.workers.dev", {
       category_id: process.env.POPULAR_ID,
       size: 12,
     });

@@ -44,7 +44,7 @@ export default function CartItem({ product }) {
               width={1000}
               height={1000}
               alt={product.name}
-              className="h-full w-full object-top rounded-md object-cover"
+              className="h-full max-h-48 w-full object-top rounded-md object-cover"
             />
           </Link>
         </div>

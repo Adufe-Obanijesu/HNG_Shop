@@ -3,36 +3,11 @@ import Image from "next/image";
 import { IoHeart } from "react-icons/io5";
 import { GoStarFill } from "react-icons/go";
 import { TbCurrencyNaira } from "react-icons/tb";
-import { FaMinus, FaPlus } from "react-icons/fa";
 import Link from "next/link";
-
-import { useContext } from "react";
-import { Context } from "@/pages/_app";
 
 import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function Product({ product }) {
-  const { state, dispatch } = useContext(Context);
-
-  const handleAddToCart = (product) => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: {
-        ...product,
-        qty: 1,
-      },
-    });
-  };
-
-  const handleRemoveFromCart = () => {
-    dispatch({
-      type: "REMOVE_FROM_CART",
-      payload: {
-        ...product,
-        qty: 1,
-      },
-    });
-  };
 
   return (
     <Link href={`/products/${product?.id}`}>

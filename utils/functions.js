@@ -7,7 +7,7 @@ export function formatNumberWithCommas(number) {
 export async function fetchProduct(url, params = []) {
 
   try {
-    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + url, {
+    const response = await axios.get(url, {
       params: {
         organization_id: process.env.NEXT_PUBLIC_ORG_ID,
         Appid: process.env.NEXT_PUBLIC_APP_ID,

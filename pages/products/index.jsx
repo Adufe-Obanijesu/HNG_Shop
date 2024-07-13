@@ -99,7 +99,7 @@ export async function getServerSideProps(ctx) {
   let response;
 
   try {
-    response = await fetchProduct("/products", {
+    response = await fetchProduct("https://timbu-get-all-products.reavdev.workers.dev", {
       size: 12,
       page: page || 1,
     });

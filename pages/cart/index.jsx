@@ -51,7 +51,7 @@ export default function Cart() {
               })}
 
             {state.cart.length > 0 && (
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-4 lg:mt-0">
                 <button
                   className="py-2 px-4 rounded-md bg-red-500 hover:bg-red-600 text-white"
                   onClick={clearCart}
@@ -165,8 +165,8 @@ export default function Cart() {
         </div>
       </section>
 
-      <section className="-mx-4 md:mx-0">
-        <div className="lg:pl-10">
+      <section className="flex justify-end -mx-4 md:mx-0">
+        <div className="lg:col-start-2 lg:pl-10 w-full lg:w-auto xl:w-1/2">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>

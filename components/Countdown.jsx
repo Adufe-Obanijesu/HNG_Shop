@@ -26,7 +26,7 @@ const Countdown = () => {
     return timeLeft;
   }, [futureDate]);
 
-  // Initialize with a placeholder value
+  
   const [timeLeft, setTimeLeft] = useState({
     days: "--",
     hours: "--",
@@ -39,7 +39,6 @@ const Countdown = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    // Set the initial state after the component mounts
     setTimeLeft(calculateTimeLeft());
 
     return () => clearInterval(timer);

@@ -14,7 +14,7 @@ export default function Testimony({ img, text, name, career }) {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="w-full md:h-full lg:h-36 xl:h-full h-24 absolute md:-bottom-3 top-3 -left-3 bg-gray-300"></div>
+        <div className="w-full md:h-full lg:h-full xl:h-full sm:h-full h-full absolute md:-bottom-3 top-3 -left-3 bg-gray-300"></div>
       </div>
 
       <div className="col-span-3 space-y-4">

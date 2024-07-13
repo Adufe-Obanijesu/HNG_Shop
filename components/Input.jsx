@@ -46,24 +46,3 @@ export function Email({ name, label, value, setData, placeholder }) {
     </div>
   );
 }
-
-export function TextArea({ name, label, value, setData }) {
-  return (
-    <div className="mb-4">
-      <label htmlFor={name} className="font-medium text-gray-600 text-sm">
-        {label}
-      </label>
-      <br />
-      <div className="mt-1 rounded border border-blue-200 focus:outline-blue-500 py-1 px-4 flex items-center">
-        <textarea
-          value={value || ""}
-          name={name}
-          onChange={setData}
-          id={name}
-          col={2}
-          className="bg-transparent focus:outline-none text-gray-600 py-1.5 w-full grow"
-        ></textarea>
-      </div>
-    </div>
-  );
-}

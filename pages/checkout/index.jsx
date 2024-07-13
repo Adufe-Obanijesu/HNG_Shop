@@ -1,10 +1,7 @@
 import CheckoutItem from "@/components/CheckoutItem";
-import { checkout } from "@/data";
 import Image from "next/image";
 import { useState } from "react";
-import { FaCheck, FaPlus } from "react-icons/fa";
-
-import { HiPencil } from "react-icons/hi";
+import { FaCheck } from "react-icons/fa";
 import { TbCurrencyNaira } from "react-icons/tb";
 
 import { Context } from "@/pages/_app";
@@ -12,7 +9,6 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { formatNumberWithCommas } from "@/utils/functions";
 import { Email, TextInput } from "@/components/Input";
-import axios from "axios";
 
 export default function Checkout() {
   const router = useRouter();
@@ -36,7 +32,7 @@ export default function Checkout() {
     }
 
     if (e.target.name === "expDate") {
-      if (e.target.value.length > 5) return;
+      if (e.target.value.length > 7) return;
       const allowedPattern = /^[\d/ ]*$/;
       if (!allowedPattern.test(e.target.value)) return;
       if (
@@ -72,35 +68,11 @@ export default function Checkout() {
 
     setPay("inProgress");
 
-    const { fname, lname, email, phone } = checkoutData;
-    const data = {
-      organization_id: process.env.NEXT_PUBLIC_ORG_ID,
-      Appid: process.env.NEXT_PUBLIC_APP_ID,
-      Apikey: process.env.NEXT_PUBLIC_API_KEY,
-      first_name: fname,
-      last_name: lname,
-      email,
-      phone,
-      mode_of_payment: "Card",
-    };
-
-    try {
-      const response = await axios.post(
-        process.env.NEXT_PUBLIC_BASE_URL + "/sales",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      console.log(response);
+    setTimeout(() => {
       dispatch({ type: "CLEAR" });
       setPay("successful");
-    } catch (err) {
-      console.log(err);
-    }
+    }, 3000);
+
   };
 
   const reset = () => {
@@ -153,7 +125,7 @@ export default function Checkout() {
             })}
 
           {state.cart.length > 0 && (
-            <div className="flex justify-end">
+            <div className="flex justify-end mt-4 lg:mt-0">
               <button
                 className="py-2 px-4 rounded-md bg-red-500 hover:bg-red-600 text-white"
                 onClick={clearCart}
@@ -478,7 +450,7 @@ export default function Checkout() {
                 </p>
 
                 <div className="h-center mt-4">
-                  <button className="bg-gray-200 px-4 py-2 rounded-2xl text-gray-600 hover:text-white hover:bg-primary">
+                  <button className="bg-gray-200 px-4 py-2 rounded-2xl text-gray-600 hover:text-white hover:bg-primary" onClick={reset}>
                     Track My Order
                   </button>
                 </div>
