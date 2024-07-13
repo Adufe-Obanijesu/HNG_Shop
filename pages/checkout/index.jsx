@@ -293,7 +293,7 @@ export default function Checkout() {
             <div>
               <TextInput
                 name="fname"
-                label="Full Name"
+                label="First Name"
                 placeholder="John"
                 value={checkoutData.fname}
                 setData={handleInput}
@@ -307,7 +307,7 @@ export default function Checkout() {
               />
               <Email
                 name="email"
-                label="Full Name"
+                label="Email"
                 placeholder="johndoe@gmail.com"
                 value={checkoutData.email}
                 setData={handleInput}
@@ -321,7 +321,7 @@ export default function Checkout() {
               />
               <TextInput
                 name="address"
-                label="Street Address"
+                label="Address"
                 placeholder="No 10, Street, State"
                 value={checkoutData.address}
                 setData={handleInput}
@@ -389,7 +389,7 @@ export default function Checkout() {
             </div>
 
             <button className="btn border-2 border-primary w-full">
-              Checkout
+              Place Order
             </button>
           </div>
         </form>

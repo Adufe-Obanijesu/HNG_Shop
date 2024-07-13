@@ -10,6 +10,15 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transformStyle, setTransformStyle] = useState("");
 
+  const styles = [
+    "-translate-x-[100%]",
+    "-translate-x-[200%]",
+    "-translate-x-[300%]",
+    "lg:-translate-x-[40%]",
+    "lg:-translate-x-[80%]",
+    "lg:-translate-x-[120%]",
+  ]
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };

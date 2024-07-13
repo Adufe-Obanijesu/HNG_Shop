@@ -46,7 +46,7 @@ export default function CheckoutItem({ product }) {
           />
         </Link>
         <div>
-          <h4 className="font-bold text-xl text-gray-800">{name}</h4>
+          <h4 className="font-bold text-xl text-gray-800">{product.name}</h4>
           <div className="mt-2 text-gray-600">
             <p>Color: {product.color}</p>
             <p>Size: {product.size}</p>

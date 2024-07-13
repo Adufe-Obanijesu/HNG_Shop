@@ -118,7 +118,7 @@ export default function Cart() {
                   }}
                 >
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                    Place Order
+                    Checkout
                   </button>
                 </Link>
               </div>
@@ -156,7 +156,7 @@ export default function Cart() {
                   }}
                 >
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
-                    Place Order
+                    Checkout
                   </button>
                 </Link>
               </div>
@@ -180,7 +180,7 @@ export default function Cart() {
               On all orders over
               <span className="shrink-0 whitespace-nowrap">
                 <TbCurrencyNaira className="text-xl mb-[3px] inline" />
-                <span className="">50,000</span>
+                <span className="">500,000</span>
               </span>
             </span>
           </p>

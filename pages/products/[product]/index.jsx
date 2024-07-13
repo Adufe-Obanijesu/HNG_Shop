@@ -288,7 +288,7 @@ export default function Product({ product }) {
               On all orders over
               <span className="shrink-0 whitespace-nowrap">
                 <TbCurrencyNaira className="text-xl mb-[3px] inline" />
-                <span className="">50,000</span>
+                <span className="">500,000</span>
               </span>
             </span>
           </p>
