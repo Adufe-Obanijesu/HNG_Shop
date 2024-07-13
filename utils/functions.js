@@ -11,7 +11,7 @@ export async function fetchProduct(url, params = []) {
       params: {
         organization_id: process.env.NEXT_PUBLIC_ORG_ID,
         Appid: process.env.NEXT_PUBLIC_APP_ID,
-        Apikey: process.env.NEXT_PUBLIC_API_KEY,
+        Apikey: process.env.NEXT_PUBLIC_API_KEY, 
         ...params,
       },
     });
