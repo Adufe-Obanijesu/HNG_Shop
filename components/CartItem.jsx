@@ -51,13 +51,13 @@ export default function CartItem({ product }) {
         <div className="pt-4">
           <h4 className="font-bold text-xl text-gray-800">{product.name}</h4>
           <div className="mt-4 text-gray-600">
-            <p>Color: {product.color}</p>
-            <p>Size: {product.size}</p>
+            <p className="font-medium">Color: {product.color}</p>
+            <p className="font-medium">Size: {product.size}</p>
           </div>
 
           <div className="mt-4 flex gap-2">
             <button
-              className="text-red-500 underline cursor-pointer hover:text-red-600"
+              className="text-red-500 font-medium underline cursor-pointer hover:text-red-600"
               onClick={deleteItem}
             >
               Remove

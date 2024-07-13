@@ -361,7 +361,7 @@ export default function Checkout() {
           </div>
 
           <div className="md:w-1/2 w-full mt-8">
-            <h3 className="font-bold text-2xl mb-4">Payment</h3>
+            <h3 className="font-bold md:text-2xl text-xl mb-4">Payment Details</h3>
             <div>
               <TextInput
                 name="cardNumber"

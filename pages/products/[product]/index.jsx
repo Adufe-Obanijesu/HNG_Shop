@@ -109,6 +109,26 @@ export default function Product({ product }) {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
+
+              <div className="flex justify-center gap-4 shrink-0 md:hidden mt-6">
+                {product.photos && product.photos.map((img, i) => {
+                  return (
+                    <div
+                      className={`p-1 cursor-pointer border-2 ${image === i ? "border-primary" : "border-transparent hover:border-primary"}`}
+                      key={img?.url}
+                      onClick={() => setImage(i)}
+                    >
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img?.url}`}
+                        alt="dress"
+                        width={1000}
+                        height={1000}
+                        className="w-16 h-14 object-cover"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="md:py-8 mx-4 md:mx-0">
@@ -140,7 +160,7 @@ export default function Product({ product }) {
 
               <div className="mt-4">
                 <h4
-                  className={`font-semibold cursor-pointer pb-1 lg:text-xl text-base`}
+                  className={`font-bold cursor-pointer pb-1 lg:text-xl text-base`}
                 >
                   Descriptions
                 </h4>
@@ -270,11 +290,31 @@ export default function Product({ product }) {
               </div>
             </div>
           </div>
+
         </div>
+          <div className="md:flex gap-4 shrink-0 lg:hidden hidden mt-6">
+            {product.photos && product.photos.map((img, i) => {
+              return (
+                <div
+                  className={`p-1 cursor-pointer border-2 ${image === i ? "border-primary" : "border-transparent hover:border-primary"}`}
+                  key={img?.url}
+                  onClick={() => setImage(i)}
+                >
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img?.url}`}
+                    alt="dress"
+                    width={1000}
+                    height={1000}
+                    className="w-16 h-14 object-cover"
+                  />
+                </div>
+              );
+            })}
+          </div>
       </section>
 
       <section className="flex justify-end -mx-4 md:mx-0">
-        <div className="lg:col-start-2 lg:pl-10 w-full lg:w-auto xl:w-1/2">
+        <div className="lg:col-start-2 lg:pl-10 w-full lg:w-auto xl:w-1/2 border-t pt-4">
           <p className="text-gray-700 v-center gap-1 mx-4 md:mx-0">
             <TbBus className="inline text-xl shrink-0" />
             <span className="font-bold">Estimated Delivery:</span>
