@@ -24,15 +24,15 @@ export default function Products({ products, total }) {
             <li className="">Sales</li>
           </ul>
 
-          <div className="v-center lg:justify-end md:gap-4 gap-3 w-full xl:w-auto order-1 md:order-2">
-            <div className="bg-gray-100 rounded-lg hv-center px-4 py-2 gap-4 w-full lg:w-auto">
+          <div className="v-center justify-end md:gap-4 gap-3 w-full xl:w-auto order-1 md:order-2">
+            {/* <div className="bg-gray-100 rounded-lg hv-center px-4 py-2 gap-4 w-full lg:w-auto">
               <FiSearch className="text-xl text-gray-700" />
               <input
                 type="text"
                 placeholder="Search for Products"
                 className="bg-transparent focus:outline-none text-gray-700 w-full"
               />
-            </div>
+            </div> */}
 
             <span className="w-10 h-10 shrink-0 hv-center rounded-full border">
               <RiShareForwardBoxLine className="text-lg" />
