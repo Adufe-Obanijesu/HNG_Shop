@@ -8,9 +8,7 @@ import { Context } from "@/pages/_app";
 import Link from "next/link";
 import { formatNumberWithCommas } from "@/utils/functions";
 
-export default function CartItem({
-  product
-}) {
+export default function CartItem({ product }) {
   const { dispatch } = useContext(Context);
 
   const handleAddToCart = () => {
@@ -58,10 +56,6 @@ export default function CartItem({
           </div>
 
           <div className="mt-4 flex gap-2">
-            <button className="text-gray-400 underline cursor-pointer hover:text-gray-600">
-              Edit
-            </button>
-
             <button
               className="text-red-500 underline cursor-pointer hover:text-red-600"
               onClick={deleteItem}
@@ -76,7 +70,9 @@ export default function CartItem({
         <div className="flex md:block flex-col justify-between items-end">
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{formatNumberWithCommas(Number(product?.current_price))}</h3>
+            <h3 className="font-bold">
+              {formatNumberWithCommas(Number(product?.current_price))}
+            </h3>
           </div>
 
           <div className="px-4 py-2 rounded-lg border-2 border-primary v-center gap-3 md:hidden">
@@ -86,7 +82,9 @@ export default function CartItem({
             >
               <FaMinus className="text-white text-[10px]" />
             </span>
-            <span className="text-gray-400 font-medium text-sm">{product.qty}</span>
+            <span className="text-gray-400 font-medium text-sm">
+              {product.qty}
+            </span>
             <span
               className="bg-primary hv-center h-5 w-5 cursor-pointer rounded-full"
               onClick={handleAddToCart}
@@ -106,7 +104,9 @@ export default function CartItem({
             >
               <FaMinus className="text-white text-sm" />
             </span>
-            <span className="text-gray-400 font-medium text-sm">{product.qty}</span>
+            <span className="text-gray-400 font-medium text-sm">
+              {product.qty}
+            </span>
             <span
               className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
               onClick={handleAddToCart}

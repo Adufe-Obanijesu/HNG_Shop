@@ -34,7 +34,7 @@ export default function Testimonials() {
   }, [currentIndex]);
 
   return (
-    <section className="xl:-mx-16 md:-mx-8 -mx-4 bg-base-blue md:p-16 py-10 px-4">
+    <section className="xl:-mx-16 md:-mx-8 -mx-4 bg-base-blue md:py-16 py-10">
       <h4 className="font-bold text-center md:text-3xl text-2xl">
         Our Customer&apos;s Review
       </h4>

@@ -10,7 +10,6 @@ import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
 
 export default function Products({ products, total }) {
-
   const router = useRouter();
   const { page } = router.query;
 
@@ -72,23 +71,20 @@ export default function Products({ products, total }) {
 
       <section>
         <h3 className="font-bold text-2xl mb-6">Our Products</h3>
+
+        {products.length === 0 && (
+          <div className="md:text-2xl text-xl font-bold mt-4">
+            No Product found!
+          </div>
+        )}
+
         <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-3">
-          {
-              products.map((product) => {
-
-                return (
-                <Product
-                    key={product.id}
-                    product={product}
-                />
-                );
-            })
-          }
-
+          {products.map((product) => {
+            return <Product key={product.id} product={product} />;
+          })}
         </div>
-        
-        <Pagination total={total} page={page || 1} />
 
+        {products.length > 0 && <Pagination total={total} page={page || 1} />}
       </section>
 
       <Testimonials />
@@ -97,25 +93,24 @@ export default function Products({ products, total }) {
 }
 
 export async function getServerSideProps(ctx) {
-
   const { query } = ctx;
-  const { page } = query;  
+  const { page } = query;
 
   let response;
-  
+
   try {
     response = await fetchProduct("/products", {
       size: 12,
       page: page || 1,
-    })
-  } catch(err) {
+    });
+  } catch (err) {
     console.log(err);
   }
-  
+
   return {
     props: {
       products: response.data.items || [],
       total: response.data.total || 0,
-    }
-  }
+    },
+  };
 }

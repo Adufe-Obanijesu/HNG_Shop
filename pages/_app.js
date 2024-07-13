@@ -10,9 +10,9 @@ export default function App({ Component, pageProps }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('hng_arries_cart');
+    const storedCart = localStorage.getItem("hng_arries_cart");
     if (storedCart) {
-      dispatch({ type: 'INITIALIZE_CART', payload: JSON.parse(storedCart) });
+      dispatch({ type: "INITIALIZE_CART", payload: JSON.parse(storedCart) });
     }
   }, []);
 

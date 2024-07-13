@@ -31,17 +31,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="md:hidden">
-          <Link href="/cart" className="relative">
-            <span className="hv-center border rounded-full h-8 w-8">
-              <MdOutlineShoppingCart />
-            </span>
-            <span className="w-5 h-5 bg-primary text-white rounded-full text-sm -top-1 -right-2 absolute hv-center">
-              {state.cart.length || 0}
-            </span>
-          </Link>
-        </div>
-
         <ul className="lg:flex hidden gap-8 items-center">
           <Link href="/">
             <li
@@ -93,9 +82,19 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div>
+        <div className="hv-center gap-8 lg:hidden">
+          <div>
+            <Link href="/cart" className="relative">
+              <span className="hv-center border rounded-full h-8 w-8">
+                <MdOutlineShoppingCart />
+              </span>
+              <span className="w-5 h-5 bg-primary text-white rounded-full text-sm -top-1 -right-2 absolute hv-center">
+                {state.cart.length || 0}
+              </span>
+            </Link>
+          </div>
           <RxHamburgerMenu
-            className="text-primary text-3xl cursor-pointer lg:hidden"
+            className="text-primary text-3xl cursor-pointer"
             onClick={() => setShowSidebar(true)}
           />
         </div>

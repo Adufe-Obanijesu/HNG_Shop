@@ -7,7 +7,6 @@ import { PiHeartBold, PiPackage } from "react-icons/pi";
 import { RiShareForward2Fill } from "react-icons/ri";
 import { RxCaretLeft } from "react-icons/rx";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
-import { shop } from "@/data";
 import { useRouter } from "next/router";
 
 import { useContext } from "react";
@@ -21,7 +20,6 @@ export default function Product({ product }) {
 
   const [activeColor, setActiveColor] = useState("Gray");
   const [activeSize, setActiveSize] = useState("S");
-  const [tab, setTab] = useState("descriptions");
   const [image, setImage] = useState(0);
 
   const handleAddToCart = () => {
@@ -45,6 +43,16 @@ export default function Product({ product }) {
       },
     });
   };
+
+  if (!product) {
+    router.push("/products");
+
+    return (
+      <h3 className="text-2xl font-bold mb-6">
+        Product not found! Redirecting you to our shop
+      </h3>
+    );
+  }
 
   return (
     <main>
@@ -75,7 +83,8 @@ export default function Product({ product }) {
               return (
                 <div
                   className={`p-1 cursor-pointer border-2 ${image === i ? "border-primary" : "border-transparent hover:border-primary"}`}
-                  key={img.url} onClick={() => setImage(i)}
+                  key={img.url}
+                  onClick={() => setImage(i)}
                 >
                   <Image
                     src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/${img.url}`}
@@ -129,34 +138,14 @@ export default function Product({ product }) {
               </div>
 
               <div className="mt-4">
-                <ul className="w-full flex gap-6">
-                  <li
-                    className={`${tab === "descriptions" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
-                    onClick={() => setTab("descriptions")}
-                  >
-                    Descriptions
-                  </li>
-                  <li
-                    className={`${tab === "details" ? "font-bold border-b-2 border-black" : "font-medium"} cursor-pointer hover:font-semibold pb-1 lg:text-xl text-base`}
-                    onClick={() => setTab("details")}
-                  >
-                    Details
-                  </li>
-                </ul>
+                <h4
+                  className={`font-semibold cursor-pointer pb-1 lg:text-xl text-base`}
+                >
+                  Descriptions
+                </h4>
 
                 <p className="text-gray-600 mt-2 w-full">
-                  {tab === "descriptions" && (
-                    <span>
-                      {product.description}
-                    </span>
-                  )}
-
-                  {tab === "details" && (
-                    <span>
-                      Details Lorem ipsum dolor sit amet consectetur adipisicing
-                      elit.
-                    </span>
-                  )}
+                  {product.description}
                 </p>
               </div>
 
@@ -244,38 +233,39 @@ export default function Product({ product }) {
               </div>
 
               <div className="mt-4">
-                {
-                  state.cart.find((item) => item.id === product.id) ? (
-                    <>
-                      <h5 className="font-bold hidden md:block">Quantity</h5>
+                {state.cart.find((item) => item.id === product.id) ? (
+                  <>
+                    <h5 className="font-bold hidden md:block">Quantity</h5>
 
-                      <div className="mt-8 md:mt-4 flex">
-                        <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
-                          <span
-                            className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full"
-                            onClick={handleRemoveFromCart}
-                          >
-                            <FaMinus className="text-white text-sm" />
-                          </span>
-                          <span className="text-gray-400 font-medium text-sm">
-                            {state.cart.find((item) => item.id === product.id)?.qty ||
-                              0}
-                          </span>
-                          <span
-                            className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
-                            onClick={handleAddToCart}
-                          >
-                            <FaPlus className="text-white text-sm" />
-                          </span>
-                        </div>                        
+                    <div className="mt-8 md:mt-4 flex">
+                      <div className="px-4 py-3 rounded-lg border-2 border-primary v-center gap-8">
+                        <span
+                          className="bg-gray-400 hv-center h-6 w-6 cursor-pointer rounded-full"
+                          onClick={handleRemoveFromCart}
+                        >
+                          <FaMinus className="text-white text-sm" />
+                        </span>
+                        <span className="text-gray-400 font-medium text-sm">
+                          {state.cart.find((item) => item.id === product.id)
+                            ?.qty || 0}
+                        </span>
+                        <span
+                          className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
+                          onClick={handleAddToCart}
+                        >
+                          <FaPlus className="text-white text-sm" />
+                        </span>
                       </div>
-                    </>
-                  ) : (
-                    <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto" onClick={handleAddToCart}>
-                      Add to Cart
-                    </button>
-                  )
-                }
+                    </div>
+                  </>
+                ) : (
+                  <button
+                    className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 px-24 w-full md:w-auto"
+                    onClick={handleAddToCart}
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -334,7 +324,7 @@ export async function getServerSideProps(ctx) {
 
   try {
     response = await fetchProduct(`/products/${product}`);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 

@@ -4,7 +4,6 @@ import Testimonials from "@/components/testimonials/Testimonials";
 import { TbBus, TbCurrencyNaira } from "react-icons/tb";
 import { PiPackage } from "react-icons/pi";
 
-import { checkout } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,11 +12,15 @@ import { useContext } from "react";
 import { formatNumberWithCommas } from "@/utils/functions";
 
 export default function Cart() {
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
 
   const subtotal = state.cart.reduce((total, item) => {
     return total + item.current_price * item.qty;
   }, 0);
+
+  const clearCart = () => {
+    dispatch({ type: "CLEAR" });
+  };
 
   return (
     <main>
@@ -44,14 +47,19 @@ export default function Cart() {
 
             {state.cart &&
               state.cart.map((item) => {
-
-                return (
-                  <CartItem
-                    key={item.id}
-                    product={item}
-                  />
-                );
+                return <CartItem key={item.id} product={item} />;
               })}
+
+            {state.cart.length > 0 && (
+              <div className="flex justify-end">
+                <button
+                  className="py-2 px-4 rounded-md bg-red-500 hover:bg-red-600 text-white"
+                  onClick={clearCart}
+                >
+                  Clear cart
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-8 mt-4 md:w-2/3 lg:w-auto">
@@ -64,7 +72,9 @@ export default function Cart() {
 
                   <div className="v-center">
                     <TbCurrencyNaira className="text-lg text-gray-600" />
-                    <h3 className="text-gray-600">{formatNumberWithCommas(subtotal)}</h3>
+                    <h3 className="text-gray-600">
+                      {formatNumberWithCommas(subtotal)}
+                    </h3>
                   </div>
                 </div>
 
@@ -99,11 +109,14 @@ export default function Cart() {
                 {state.cart.length === 0 && (
                   <p className="text-red-500 mb-2 text-center">No item found</p>
                 )}
-                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`} onClick={() => {
-                  if (state.cart.length === 0) {
-                    alert("No product added");
-                  }
-                  }}>
+                <Link
+                  href={`${state.cart.length === 0 ? "#" : "/checkout"}`}
+                  onClick={() => {
+                    if (state.cart.length === 0) {
+                      alert("No product added");
+                    }
+                  }}
+                >
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>
@@ -134,11 +147,14 @@ export default function Cart() {
                 {state.cart.length === 0 && (
                   <p className="text-red-500 mb-2 text-center">No item found</p>
                 )}
-                <Link href={`${state.cart.length === 0 ? "#" : "/checkout"}`} onClick={() => {
-                  if (state.cart.length === 0) {
-                    alert("No product added");
-                  }
-                }}>
+                <Link
+                  href={`${state.cart.length === 0 ? "#" : "/checkout"}`}
+                  onClick={() => {
+                    if (state.cart.length === 0) {
+                      alert("No product added");
+                    }
+                  }}
+                >
                   <button className="bg-primary border-primary border-2 text-white hover:bg-transparent rounded-lg hover:text-primary py-2 w-full">
                     Place Order
                   </button>

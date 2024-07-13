@@ -8,9 +8,7 @@ import { Context } from "@/pages/_app";
 import Link from "next/link";
 import { formatNumberWithCommas } from "@/utils/functions";
 
-export default function CheckoutItem({
-  product
-}) {
+export default function CheckoutItem({ product }) {
   const { dispatch } = useContext(Context);
 
   const handleAddToCart = () => {
@@ -55,10 +53,6 @@ export default function CheckoutItem({
           </div>
 
           <div className="mt-2 md:flex hidden gap-2">
-            <button className="text-gray-400 underline cursor-pointer hover:text-gray-600">
-              Edit
-            </button>
-
             <button
               className="text-red-400 underline cursor-pointer hover:text-red-600"
               onClick={deleteItem}
@@ -73,7 +67,9 @@ export default function CheckoutItem({
         <div>
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{formatNumberWithCommas(Number(product?.current_price))}</h3>
+            <h3 className="font-bold">
+              {formatNumberWithCommas(Number(product?.current_price))}
+            </h3>
           </div>
         </div>
       </div>
@@ -87,7 +83,9 @@ export default function CheckoutItem({
             >
               <FaMinus className="text-white text-sm" />
             </span>
-            <span className="text-gray-400 font-medium text-sm">{product.qty}</span>
+            <span className="text-gray-400 font-medium text-sm">
+              {product.qty}
+            </span>
             <span
               className="bg-primary hv-center h-6 w-6 cursor-pointer rounded-full"
               onClick={handleAddToCart}
@@ -102,7 +100,11 @@ export default function CheckoutItem({
         <div>
           <div className="v-center">
             <TbCurrencyNaira className="text-xl" />
-            <h3 className="font-bold">{formatNumberWithCommas(Number(product?.current_price) * product.qty)}</h3>
+            <h3 className="font-bold">
+              {formatNumberWithCommas(
+                Number(product?.current_price) * product.qty,
+              )}
+            </h3>
           </div>
         </div>
       </div>

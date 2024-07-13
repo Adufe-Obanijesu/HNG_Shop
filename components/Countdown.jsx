@@ -28,10 +28,10 @@ const Countdown = () => {
 
   // Initialize with a placeholder value
   const [timeLeft, setTimeLeft] = useState({
-    days: '--',
-    hours: '--',
-    minutes: '--',
-    seconds: '--',
+    days: "--",
+    hours: "--",
+    minutes: "--",
+    seconds: "--",
   });
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Countdown = () => {
     <div className="flex gap-6 mt-2">
       <div>
         <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
-          {timeLeft.days < 10 && timeLeft.days !== '--' && "0"}
+          {timeLeft.days < 10 && timeLeft.days !== "--" && "0"}
           {timeLeft.days}
         </span>
 
@@ -58,7 +58,7 @@ const Countdown = () => {
 
       <div>
         <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
-          {timeLeft.hours < 10 && timeLeft.hours !== '--' && "0"}
+          {timeLeft.hours < 10 && timeLeft.hours !== "--" && "0"}
           {timeLeft.hours}
         </span>
 
@@ -67,7 +67,7 @@ const Countdown = () => {
 
       <div>
         <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
-          {timeLeft.minutes < 10 && timeLeft.minutes !== '--' && "0"}
+          {timeLeft.minutes < 10 && timeLeft.minutes !== "--" && "0"}
           {timeLeft.minutes}
         </span>
 
@@ -76,7 +76,7 @@ const Countdown = () => {
 
       <div>
         <span className="hv-center gap-1 w-12 h-12 text-xl font-digital-numbers text-ascent bg-white rounded">
-          {timeLeft.seconds < 10 && timeLeft.seconds !== '--' && "0"}
+          {timeLeft.seconds < 10 && timeLeft.seconds !== "--" && "0"}
           {timeLeft.seconds}
         </span>
 

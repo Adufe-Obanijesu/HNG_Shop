@@ -10,6 +10,7 @@ Arries Place is a fashion designer shop built using Next.js. This project is a s
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
+- [Backend](#backend)
 - [License](#license)
 
 ## Routes
@@ -73,6 +74,12 @@ This project is built with the following technologies:
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Netlify](https://www.netlify.com/)
+
+## Backend
+
+The backend for this project is implemented using the Timbu API. You can find more information about the API here:
+- [Timbu API](https://timbu.cloud)
+- [Timbu API Documentation](https://docs.timbu.cloud)
 
 ## License
 
