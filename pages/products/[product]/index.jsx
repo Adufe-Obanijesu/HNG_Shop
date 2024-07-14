@@ -364,7 +364,7 @@ export async function getServerSideProps(ctx) {
   let response;
 
   try {
-    response = await fetchProduct(`https://timbu-get-single-product.reavdev.workers.dev/${product}`);
+    response = await fetchProduct(`https://api.timbu.cloud/products/${product}`);
   } catch (err) {
     console.log(err);
   }
