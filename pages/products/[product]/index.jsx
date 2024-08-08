@@ -110,7 +110,7 @@ export default function Product({ product }) {
                 />
               </div>
 
-              <div className="flex justify-center gap-2 shrink-0 md:hidden mt-6">
+              <div className="flex justify-center gap-4 shrink-0 md:hidden mt-6">
                 {product.photos && product.photos.map((img, i) => {
                   return (
                     <div
