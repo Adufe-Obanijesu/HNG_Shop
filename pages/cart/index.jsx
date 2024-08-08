@@ -18,9 +18,9 @@ export default function Cart() {
     return total + item.current_price * item.qty;
   }, 0);
 
-  const clearCart = () => {
-    dispatch({ type: "CLEAR" });
-  };
+  // const clearCart = () => {
+  //   dispatch({ type: "CLEAR" });
+  // };
 
   return (
     <main>
@@ -49,7 +49,7 @@ export default function Cart() {
               state.cart.map((item) => {
                 return <CartItem key={item.id} product={item} />;
               })}
-
+{/* 
             {state.cart.length > 0 && (
               <div className="flex justify-end mt-4 lg:mt-0">
                 <button
@@ -59,7 +59,7 @@ export default function Cart() {
                   Clear cart
                 </button>
               </div>
-            )}
+            )} */}
           </div>
 
           <div className="flex flex-col gap-8 mt-4 md:w-2/3 lg:w-auto">

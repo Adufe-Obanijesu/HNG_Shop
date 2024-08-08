@@ -81,9 +81,9 @@ export default function Checkout() {
     router.push("/products");
   };
 
-  const clearCart = () => {
-    dispatch({ type: "CLEAR" });
-  };
+  // const clearCart = () => {
+  //   dispatch({ type: "CLEAR" });
+  // };
 
   return (
     <main>
@@ -124,7 +124,7 @@ export default function Checkout() {
               return <CheckoutItem key={item.id} product={item} />;
             })}
 
-          {state.cart.length > 0 && (
+          {/* state.cart.length > 0 && (
             <div className="flex justify-end mt-4 lg:mt-0">
               <button
                 className="py-2 px-4 rounded-md bg-red-500 hover:bg-red-600 text-white"
@@ -133,7 +133,7 @@ export default function Checkout() {
                 Clear cart
               </button>
             </div>
-          )}
+          ) */}
         </div>
       </section>
 
